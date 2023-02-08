@@ -1,0 +1,459 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass ../../../.lyx/layouts/mmuthesis
+\begin_preamble
+%in manjaro you may need texlive-bibtexextra and texlive-latexextra and texlive-langcyrillic
+\usepackage{ifthen}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{url} 
+
+\usepackage{epsfig} 
+\usepackage{tabls}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage[usenames]{color}
+
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{pdfcolmk}
+\usepackage{natbib}
+
+\usepackage{color}
+\usepackage{times}
+\usepackage{amsfonts}
+\usepackage{longtable}
+
+\definecolor{MyBlack}{rgb}{0,0,0}
+\definecolor{MyGray}{rgb}{0.5,0.5,0.5} 
+\definecolor{MyBlue}{rgb}{0,0.4,1}
+\definecolor{MyLightBlue}{rgb}{0,0.8,0.7}
+
+\providecommand{\pt}{\cellcolor{MyBlack}}
+\providecommand{\st}{\cellcolor{MyGray}}
+
+\providecommand{\bt}{\cellcolor{MyBlue}}
+\providecommand{\lt}{\cellcolor{MyLightBlue}}
+
+\usepackage{array}
+
+\usepackage{xeCJK}
+\setmainfont{Noto Serif}
+\setCJKmainfont{Source Han Sans JP}
+
+\usepackage{hyperref}
+
+%% *** Do not adjust lengths that control margins, column widths, etc. ***
+%% *** Do not use packages that alter fonts (such as pslatex).         ***
+%% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+%%page layout
+%%\usepackage{layout}
+%%
+%%resetting
+%%\setlength{\hoffset}{-1in}
+%%\setlength{\voffset}{-1in}
+%%
+%%gap between columns
+%%\setlength{\columnsep}{10mm}
+%%gap above header
+%%\setlength{\topmargin}{1in}
+%%between header and text
+%%\setlength{\topskip}{0cm}
+%%height of main text
+%%\setlength{\textheight}{8in}
+%% width of text
+%%\setlength{\textwidth}{5.5in}
+%%odd page left margin
+%%\setlength{\oddsidemargin}{1.5in}
+%%even page left margin
+%%\setlength{\evensidemargin}{4cm}
+%%\setlength{\headheight}{0mm}
+%%\setlength{\marginparsep}{0mm}
+%%\setlength{\marginparwidth}{0mm}
+%%\setlength{\headsep}{0mm}
+%%bottom margin
+%%\setlength{\footskip}{0cm}
+
+\addtocounter{MaxMatrixCols}{20}
+\pagenumbering{roman}
+\end_preamble
+\options 12pt,BSc
+\use_default_options false
+\maintain_unincluded_children false
+\language british
+\language_package auto
+\inputencoding utf8-cjk
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\font_cjk goth
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style agsm
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style british
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+[title]
+\end_layout
+
+\begin_layout Author
+By
+\begin_inset Newline newline
+\end_inset
+
+Seirra Blake
+\end_layout
+
+\begin_layout Standard
+\align center
+A REPORT SUBMITTED TO MANCHESTER METROPOLITAN UNIVERSITY
+\begin_inset Newline newline
+\end_inset
+
+FOR THE DEGREE OF BACHELOR OF SCIENCE
+\begin_inset Newline newline
+\end_inset
+
+IN THE FACULTY OF SCIENCE AND ENGINEERING
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mmu_logo.pdf
+	width 40col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Department of Computing and Mathematics
+\end_layout
+
+\begin_layout Standard
+\align center
+Principal adviser [supervisor]
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Declaration
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "4in"
+height_special "none"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+No part of this project has been submitted in support of an application
+ for any other degree or qualification at this or any other institute of
+ learning.
+ Apart from those parts of the project containing citations to the work
+ of others, this project is my own unaided work.
+ This work has been carried out in accordance with the Manchester Metropolitan
+ University research ethics procedures, and has received ethical approval
+ number [ethos number]
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Signed: Seirra Blake
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Date: 20.5.2022
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Acknowledgements
+\end_layout
+
+\begin_layout Chapter*
+Abbreviations
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features islongtable="true" longtabularalignment="center">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The author
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{headings}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "alankusEnhancingGamepadFPS2014"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Section
+Course specific learning outcomes
+\end_layout
+
+\begin_layout Standard
+[insert bulletpoints]
+\end_layout
+
+\begin_layout Section
+Hypothesis
+\end_layout
+
+\begin_layout Section
+Aim
+\end_layout
+
+\begin_layout Section
+Objectives
+\end_layout
+
+\begin_layout Section
+Problems
+\end_layout
+
+\begin_layout Chapter
+Research
+\end_layout
+
+\begin_layout Chapter
+Design
+\end_layout
+
+\begin_layout Chapter
+Implementation
+\end_layout
+
+\begin_layout Chapter
+Evaluation
+\end_layout
+
+\begin_layout Chapter
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "library"
+options "bibtotoc,agsm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\start_of_appendix
+Showcase slides
+\end_layout
+
+\begin_layout Chapter
+Code
+\end_layout
+
+\end_body
+\end_document
