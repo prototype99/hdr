@@ -314,7 +314,7 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="2">
+<lyxtabular version="3" rows="2" columns="2">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="0pt">
@@ -333,6 +333,26 @@ I
 
 \begin_layout Plain Layout
 The author
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Package Manager
 \end_layout
 
 \end_inset
@@ -375,19 +395,31 @@ pagestyle{headings}
 
 \end_layout
 
+\begin_layout Chapter
+Introduction
+\end_layout
+
 \begin_layout Standard
+A Linux installation will typically have 1000s of software packages installed;
+ even the smallest of installations will easily have 300 packages.
+ A PM helps simplify the management of installations, as it can check for
+ and apply updates, as well as install new software with all the necessary
+ dependencies and remove old dependencies
 \begin_inset CommandInset citation
 LatexCommand citet
-key "alankusEnhancingGamepadFPS2014"
+key "falkoPackageManagerCore2007"
 literal "false"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Chapter
-Introduction
+.
+ Although PMs are more common in Linux and BSD operating systems, Microsoft
+ windows is also slowly shifting towards a PM-based approach, however the
+ focus will remain on Linux.
+ Packages are typically identified by a unique name, Gentoo Linux extends
+ this by identifying packages by category, name, repository and use flags.
+ Use flags allow a package to be more finely tuned, common examples are
+ flags for features and flags for optimisations.
 \end_layout
 
 \begin_layout Section
@@ -399,11 +431,11 @@ Course specific learning outcomes
 \end_layout
 
 \begin_layout Section
-Hypothesis
+Aim
 \end_layout
 
 \begin_layout Section
-Aim
+Hypothesis
 \end_layout
 
 \begin_layout Section
