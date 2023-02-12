@@ -473,7 +473,7 @@ literal "false"
  Source packages have the advantage of being more easily customisable and
  easier to create.
  Binary packages are typically faster to install compared to the typical
- time to compile a package, however are not easily changed.
+ time to compile a package, however are not easily altered.
 \end_layout
 
 \begin_layout Chapter
