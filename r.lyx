@@ -83,7 +83,7 @@
 \addtocounter{MaxMatrixCols}{20}
 \pagenumbering{roman}
 \end_preamble
-\options 12pt,BSc
+\options 12pt,MComp
 \use_default_options false
 \maintain_unincluded_children false
 \language british
