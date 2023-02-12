@@ -314,7 +314,7 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
+<lyxtabular version="3" rows="3" columns="2">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="0pt">
@@ -353,6 +353,26 @@ PM
 
 \begin_layout Plain Layout
 Package Manager
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Virtual Machine
 \end_layout
 
 \end_inset
@@ -492,6 +512,16 @@ Design
 
 \begin_layout Chapter
 Implementation
+\end_layout
+
+\begin_layout Section
+Testing
+\end_layout
+
+\begin_layout Standard
+For the testing process a VM will be made.
+ The VM's virtual disk will be stored externally and copied to the internal
+ storage, ensuring a theoretical identical VM.
 \end_layout
 
 \begin_layout Chapter
