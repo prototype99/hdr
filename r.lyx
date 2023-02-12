@@ -476,6 +476,16 @@ literal "false"
  time to compile a package, however are not easily altered.
 \end_layout
 
+\begin_layout Section
+Existing implementations
+\end_layout
+
+\begin_layout Standard
+Whilst it is possible to design completely from scratch, it does not feel
+ logical to do so.
+ By looking at existing implementations, informed decisions can be made.
+\end_layout
+
 \begin_layout Chapter
 Design
 \end_layout
