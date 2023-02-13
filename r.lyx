@@ -314,10 +314,50 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="2">
+<lyxtabular version="3" rows="5" columns="2">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GNU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GNU's Not Unix
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GZip
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GNU Zip
+\end_layout
+
+\end_inset
+</cell>
+</row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -504,6 +544,29 @@ Existing implementations
 Whilst it is possible to design completely from scratch, it does not feel
  logical to do so.
  By looking at existing implementations, informed decisions can be made.
+\end_layout
+
+\begin_layout Subsection
+Pkgtool
+\end_layout
+
+\begin_layout Standard
+Pkgtool is the default PM of Slackware.
+ Pkgtool is a simple PM composed of a collection of shell scripts that handles
+ binary packages in the form of gzip compressed archives.
+ Bzip2 would have also been a valid compression format that would have compresse
+d the packages further, however the compression and decompression speed
+ is typically slower would introduce extra latency to package management
+ operations.
+ Pkgtool has commands to install, remove, upgrade and create packages
+\begin_inset CommandInset citation
+LatexCommand citep
+key "falkoPackageManagerCore2007"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Chapter
