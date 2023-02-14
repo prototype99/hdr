@@ -509,6 +509,11 @@ Problems
 Research
 \end_layout
 
+\begin_layout Standard
+talk about static and dynamic linking, security? dependency groups, dependency
+ resolution, dependency resolution speed issues
+\end_layout
+
 \begin_layout Section
 Operation
 \end_layout
