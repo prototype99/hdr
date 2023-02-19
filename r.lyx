@@ -552,6 +552,26 @@ Whilst it is possible to design completely from scratch, it does not feel
 \end_layout
 
 \begin_layout Subsection
+Nix
+\end_layout
+
+\begin_layout Standard
+Nix is the default PM of NixOS.
+ Whereas other PMs generally alter the state of the system destructively
+ in ways that often cannot be reversed, Nix is designed in such a way that
+ each package is contained within a single directory and can be removed
+ or added without affecting anything else.
+\begin_inset CommandInset citation
+LatexCommand citep
+key "dolstraNixOSPurelyFunctional2008"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Pkgtool
 \end_layout
 
