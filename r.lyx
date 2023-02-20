@@ -520,7 +520,11 @@ Operation
 
 \begin_layout Standard
 A PM typically keeps track of the files a package installs, which facilitates
- an easy way to uninstall, as it will just remove the installed files
+ an easy way to uninstall, as it will just remove the installed files.
+ Source packages have the advantage of being more easily customisable and
+ easier to create.
+ Binary packages are typically faster to install compared to the typical
+ time to compile a package, however are not easily altered
 \begin_inset CommandInset citation
 LatexCommand citep
 key "falkoPackageManagerCore2007"
@@ -535,10 +539,6 @@ literal "false"
  flags for features and flags for optimisations.
  A binary package is pre-compiled, whereas a source package still needs
  to be compiled.
- Source packages have the advantage of being more easily customisable and
- easier to create.
- Binary packages are typically faster to install compared to the typical
- time to compile a package, however are not easily altered.
 \end_layout
 
 \begin_layout Section
