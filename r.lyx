@@ -541,8 +541,71 @@ Packages are typically identified by a unique name, Gentoo Linux extends
  flags for features and flags for optimisations.
  A binary package is pre-compiled, whereas a source package still needs
  to be compiled.
- The relationships of packages, such as dependencies, are commonly represented
- by a graph.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graph.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A graph of the packages in Ubuntu Kylin 14.04 and their dependency relationships
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wangGraphMethodPackage2015"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-graph-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+The relationships of packages, such as dependencies, are commonly represented
+ by a graph, similar to figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-graph-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
  Deb and rpm are two popular forms of binary package which are stored as
  compressed archives
 \begin_inset CommandInset citation
