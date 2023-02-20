@@ -460,8 +460,24 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-A Linux installation will typically have 1000s of software packages installed;
- even the smallest of installations will easily have 300 packages.
+The smallest of Linux installations can easily have 300 packages; installations
+ will typically have 1000s of software packages installed
+\begin_inset CommandInset citation
+LatexCommand citep
+key "falkoPackageManagerCore2007"
+literal "false"
+
+\end_inset
+
+, Ubuntu Kylin 14.04 has 2240 packages as an example
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wangGraphMethodPackage2015"
+literal "false"
+
+\end_inset
+
+.
  A PM helps simplify the management of installations, as it can check for
  and apply updates, as well as install new software with all the necessary
  dependencies and remove old dependencies
