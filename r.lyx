@@ -537,6 +537,17 @@ literal "false"
 \end_inset
 
 , however there are many more.
+ Aside from a set of files to write to the system, packages also commonly
+ contain instructions to add users, set up configuration files, set file
+ permissions and various other administrative actions
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wangGraphMethodPackage2015"
+literal "false"
+
+\end_inset
+
+.
  Licences are an important issue with packages, as once a package with a
  restrictive licence is introduced into the system, the entire branch that
  depends on that package will become 'tainted', any packages with more liberal
