@@ -526,7 +526,9 @@ Packages are typically identified by a unique name, Gentoo Linux extends
  A binary package is pre-compiled, whereas a source package still needs
  to be compiled.
  The relationships of packages, such as dependencies, are commonly represented
- by a graph
+ by a graph.
+ Deb and rpm are two popular forms of binary package which are stored as
+ compressed archives
 \begin_inset CommandInset citation
 LatexCommand citep
 key "wangGraphMethodPackage2015"
@@ -534,7 +536,7 @@ literal "false"
 
 \end_inset
 
-.
+, however there are many more.
  Licences are an important issue with packages, as once a package with a
  restrictive licence is introduced into the system, the entire branch that
  depends on that package will become 'tainted', any packages with more liberal
