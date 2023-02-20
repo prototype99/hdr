@@ -515,7 +515,20 @@ talk about static and dynamic linking, security? dependency groups, dependency
 \end_layout
 
 \begin_layout Section
-Operation
+What is a package?
+\end_layout
+
+\begin_layout Standard
+Packages are typically identified by a unique name, Gentoo Linux extends
+ this by identifying packages by category, name, repository and use flags.
+ Use flags allow a package to be more finely tuned, common examples are
+ flags for features and flags for optimisations.
+ A binary package is pre-compiled, whereas a source package still needs
+ to be compiled.
+\end_layout
+
+\begin_layout Section
+Processing packages
 \end_layout
 
 \begin_layout Standard
@@ -533,12 +546,6 @@ literal "false"
 \end_inset
 
 .
- Packages are typically identified by a unique name, Gentoo Linux extends
- this by identifying packages by category, name, repository and use flags.
- Use flags allow a package to be more finely tuned, common examples are
- flags for features and flags for optimisations.
- A binary package is pre-compiled, whereas a source package still needs
- to be compiled.
 \end_layout
 
 \begin_layout Section
