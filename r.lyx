@@ -547,8 +547,8 @@ Research
 \end_layout
 
 \begin_layout Standard
-talk about static and dynamic linking, security? dependency groups, dependency
- resolution, dependency resolution speed issues
+security? dependency groups, dependency resolution, dependency resolution
+ speed issues
 \end_layout
 
 \begin_layout Section
@@ -669,6 +669,26 @@ A PM typically keeps track of the files a package installs, which facilitates
 \begin_inset CommandInset citation
 LatexCommand citep
 key "falkoPackageManagerCore2007"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Library linking
+\end_layout
+
+\begin_layout Standard
+Libraries are integral to larger applications, they allow for code to be
+ reused.
+ Whilst statically linked libraries are linked on a per application basis,
+ dynamically linked libraries are stored as shared objects that may be used
+ by multiple applications
+\begin_inset CommandInset citation
+LatexCommand citet
+key "kellMissingLinkExplaining2016"
 literal "false"
 
 \end_inset
