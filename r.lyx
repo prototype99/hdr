@@ -704,7 +704,7 @@ Existing implementations
 Whilst it is possible to design completely from scratch, it does not feel
  logical to do so.
  By looking at existing implementations, informed decisions can be made.
- For the sake of brevity, only source-based PMs will be examined.
+ For brevity's sake, only source-based PMs will be examined.
 \end_layout
 
 \begin_layout Subsection
