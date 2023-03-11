@@ -314,7 +314,7 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="0pt">
@@ -373,6 +373,46 @@ I
 
 \begin_layout Plain Layout
 The author
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OSS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Open Source Software
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PFL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Portage File List
 \end_layout
 
 \end_inset
@@ -484,6 +524,17 @@ literal "false"
 \begin_inset CommandInset citation
 LatexCommand citep
 key "falkoPackageManagerCore2007"
+literal "false"
+
+\end_inset
+
+.
+ Software development can generally be considered near impossible without
+ a PM due to complex dependency trees.
+ Furthermore, without PMs, the adoption of OSS can be impacted
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ossherAutomatedDependencyResolution2010"
 literal "false"
 
 \end_inset
@@ -747,6 +798,64 @@ literal "false"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Possible new features
+\end_layout
+
+\begin_layout Standard
+There are many possible features that could improve a package manager, below
+ are some possible candidates.
+\end_layout
+
+\begin_layout Subsection
+Caching
+\end_layout
+
+\begin_layout Standard
+Through the use of caching, common or repetitive actions may theoretically
+ be sped up.
+\end_layout
+
+\begin_layout Subsection
+Dealing with missing dependencies
+\end_layout
+
+\begin_layout Standard
+It is theorised that by keeping a database of software binaries, missing
+ type information could be cross-referenced in order to automatically resolve
+ missing dependencies.
+ Such a feature could make development simpler, as developers will not need
+ to store dependency information in the source files
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ossherAutomatedDependencyResolution2010"
+literal "false"
+
+\end_inset
+
+.
+ Such a tool Whilst not identical, PFL
+\begin_inset CommandInset citation
+LatexCommand citep
+key "anderslarssonPortageFileList2022"
+literal "false"
+
+\end_inset
+
+ is an example of a database that can be cross-referenced to find missing
+ binaries
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bendegrootPFL2022"
+literal "false"
+
+\end_inset
+
+.
+ The ability for anyone to contribute could be considered beneficial, as
+ it is more likely to contain the required data.
 \end_layout
 
 \begin_layout Chapter
