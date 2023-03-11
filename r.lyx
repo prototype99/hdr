@@ -670,7 +670,7 @@ Libraries are integral to larger applications, they allow for code to be
  dynamically linked libraries are stored as shared objects that may be used
  by multiple applications
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "kellMissingLinkExplaining2016"
 literal "false"
 
@@ -686,7 +686,7 @@ literal "false"
  for a library, it can be applied without changing the applications that
  use it
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "deanSecurityStaticTyping1997"
 literal "false"
 
