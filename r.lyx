@@ -523,23 +523,7 @@ Apply innovation and/or creativity to solve a computing task within the
 
 \begin_layout Itemize
 Evaluate the work and the results in the context of other published works
- and appropriate industry benchmarks.
-\end_layout
-
-\begin_layout Section
-Aim
-\end_layout
-
-\begin_layout Section
-Hypothesis
-\end_layout
-
-\begin_layout Section
-Objectives
-\end_layout
-
-\begin_layout Section
-Problems
+ and appropriate industry benchmarks.sss
 \end_layout
 
 \begin_layout Chapter
@@ -547,8 +531,7 @@ Research
 \end_layout
 
 \begin_layout Standard
-security? dependency groups, dependency resolution, dependency resolution
- speed issues
+dependency resolution, dependency resolution speed issues
 \end_layout
 
 \begin_layout Section
@@ -689,6 +672,22 @@ Libraries are integral to larger applications, they allow for code to be
 \begin_inset CommandInset citation
 LatexCommand citet
 key "kellMissingLinkExplaining2016"
+literal "false"
+
+\end_inset
+
+.
+ The use of dynamic linking helps save disk space and memory.
+ Dynamically linked libraries take longer to load than statically linked
+ libraries, however this is a minimal issue on modern systems.
+ So long as all versions use a shared interface, an application built to
+ use dynamically linked libraries may theoretically run on any system.
+ Dynamic linking can improve security as when a security or bug fix is released
+ for a library, it can be applied without changing the applications that
+ use it
+\begin_inset CommandInset citation
+LatexCommand citet
+key "deanSecurityStaticTyping1997"
 literal "false"
 
 \end_inset
