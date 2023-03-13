@@ -529,8 +529,16 @@ literal "false"
 \end_inset
 
 .
- Software development can generally be considered near impossible without
- a PM due to complex dependency trees.
+ Software typically has large, complex dependency trees
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhangComprehensiveApproachSoftware2011,ossherAutomatedDependencyResolution2010"
+literal "false"
+
+\end_inset
+
+; this means Software development can generally be considered near impossible
+ without a PM.
  Furthermore, without PMs, the adoption of OSS can be impacted
 \begin_inset CommandInset citation
 LatexCommand citep
