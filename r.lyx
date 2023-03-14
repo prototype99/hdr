@@ -501,29 +501,22 @@ Introduction
 
 \begin_layout Standard
 The smallest of Linux installations can easily have 300 packages; installations
- will typically have 1000s of software packages installed
-\begin_inset CommandInset citation
-LatexCommand citep
-key "falkoPackageManagerCore2007"
-literal "false"
-
-\end_inset
-
-, Ubuntu Kylin 14.04 has 2240 packages as an example
-\begin_inset CommandInset citation
-LatexCommand citep
-key "wangGraphMethodPackage2015"
-literal "false"
-
-\end_inset
-
-.
+ will typically have 1000s of software packages installed.
  A PM helps simplify the management of installations, as it can check for
  and apply updates, as well as install new software with all the necessary
  dependencies and remove old dependencies
 \begin_inset CommandInset citation
 LatexCommand citep
 key "falkoPackageManagerCore2007"
+literal "false"
+
+\end_inset
+
+.
+ Ubuntu Kylin 14.04 has 2240 packages
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wangGraphMethodPackage2015"
 literal "false"
 
 \end_inset
@@ -669,15 +662,7 @@ noprefix "false"
 \end_inset
 
 .
- Deb and rpm are two popular forms of binary package
-\begin_inset CommandInset citation
-LatexCommand citep
-key "wangGraphMethodPackage2015"
-literal "false"
-
-\end_inset
-
-, the most popular type
+ Binary packages are the most popular type
 \begin_inset CommandInset citation
 LatexCommand citep
 key "zhangComprehensiveApproachSoftware2011"
@@ -685,7 +670,7 @@ literal "false"
 
 \end_inset
 
-, which are stored as compressed archives
+, deb and rpm are two such examples which are stored as compressed archives
 \begin_inset CommandInset citation
 LatexCommand citep
 key "wangGraphMethodPackage2015"
