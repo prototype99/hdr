@@ -573,7 +573,8 @@ Research
 \end_layout
 
 \begin_layout Standard
-dependency resolution, dependency resolution speed issues
+dependency resolution, dependency resolution speed issues, be very clear
+ about testing criteria, talk about how cache data is stored.
 \end_layout
 
 \begin_layout Section
