@@ -513,6 +513,16 @@ literal "false"
 \end_inset
 
 .
+ Missing packages can result in the failure of software compilation, installatio
+n or execution
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhangComprehensiveApproachSoftware2011"
+literal "false"
+
+\end_inset
+
+.
  Ubuntu Kylin 14.04 has 2240 packages
 \begin_inset CommandInset citation
 LatexCommand citep
