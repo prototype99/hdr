@@ -751,7 +751,16 @@ literal "false"
 \end_inset
 
 .
- The use of dynamic linking helps save disk space and memory.
+ Many modern packages no longer include libraries
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhangComprehensiveApproachSoftware2011"
+literal "false"
+
+\end_inset
+
+ which is a result of dynamic linking's benefits that include reduced disk
+ space and memory usage.
  Dynamically linked libraries take longer to load than statically linked
  libraries, however this is a minimal issue on modern systems.
  So long as all versions use a shared interface, an application built to
