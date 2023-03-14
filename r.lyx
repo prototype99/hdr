@@ -669,8 +669,23 @@ noprefix "false"
 \end_inset
 
 .
- Deb and rpm are two popular forms of binary package which are stored as
- compressed archives
+ Deb and rpm are two popular forms of binary package
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wangGraphMethodPackage2015"
+literal "false"
+
+\end_inset
+
+, the most popular type
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhangComprehensiveApproachSoftware2011"
+literal "false"
+
+\end_inset
+
+, which are stored as compressed archives
 \begin_inset CommandInset citation
 LatexCommand citep
 key "wangGraphMethodPackage2015"
