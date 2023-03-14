@@ -771,6 +771,15 @@ literal "false"
 \end_inset
 
 .
+ Libraries can be categorised as runtime, build-time and feature dependencies
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhangComprehensiveApproachSoftware2011"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
