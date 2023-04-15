@@ -769,6 +769,132 @@ An important part of this project is the language that is used.
  C# and go.
  It was difficult to find data on local input/output performance, as most
  comparisons were for network input/output.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As can be seen in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Results-of-a"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, java is surprisingly performant at concurrent input/output, however this
+ is overshadowed by the performance seen with go.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename io-requests.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Results of a 5000 concurrent requests test
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bradpeabodyServersidePerformanceNode2017"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Results-of-a"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+When looking at figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mean-number-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, it can be seen that once again go is one of the most performant options
+ for input/output, completing requests faster than other, popular choices.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename io-time.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mean number of milliseconds to complete a request
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bradpeabodyServersidePerformanceNode2017"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mean-number-of"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
