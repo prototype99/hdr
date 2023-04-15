@@ -592,6 +592,47 @@ Packages are typically identified by a unique name, Gentoo Linux extends
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+The relationships of packages, such as dependencies, are commonly represented
+ by a graph, similar to figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-graph-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Binary packages are the most popular type
+\begin_inset CommandInset citation
+LatexCommand citep
+key "zhangComprehensiveApproachSoftware2011"
+literal "false"
+
+\end_inset
+
+, deb and rpm are two such examples which are stored as compressed archives.
+ Aside from a set of files to write to the system, packages also commonly
+ contain instructions to add users, set up configuration files, set file
+ permissions and various other administrative actions
+\begin_inset CommandInset citation
+LatexCommand citep
+key "wangGraphMethodPackage2015"
+literal "false"
+
+\end_inset
+
+.
+ It is worth noting that there are many more forms of binary package.
+ Licences are an important issue with packages, as once a package with a
+ restrictive licence is introduced into the system, the entire branch that
+ depends on that package will become 'tainted', any packages with more liberal
+ licences inheriting the more restrictive licence of the aforementioned
+ dependency.
 \begin_inset Float figure
 placement H
 wide false
@@ -635,50 +676,9 @@ name "fig:A-graph-of"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
-The relationships of packages, such as dependencies, are commonly represented
- by a graph, similar to figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:A-graph-of"
-plural "false"
-caps "false"
-noprefix "false"
 
-\end_inset
-
-.
- Binary packages are the most popular type
-\begin_inset CommandInset citation
-LatexCommand citep
-key "zhangComprehensiveApproachSoftware2011"
-literal "false"
-
-\end_inset
-
-, deb and rpm are two such examples which are stored as compressed archives.
- Aside from a set of files to write to the system, packages also commonly
- contain instructions to add users, set up configuration files, set file
- permissions and various other administrative actions
-\begin_inset CommandInset citation
-LatexCommand citep
-key "wangGraphMethodPackage2015"
-literal "false"
-
-\end_inset
-
-.
- It is worth noting that there are many more forms of binary package.
- Licences are an important issue with packages, as once a package with a
- restrictive licence is introduced into the system, the entire branch that
- depends on that package will become 'tainted', any packages with more liberal
- licences inheriting the more restrictive licence of the aforementioned
- dependency.
 \end_layout
 
 \begin_layout Section
