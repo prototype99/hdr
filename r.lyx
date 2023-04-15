@@ -757,6 +757,22 @@ literal "false"
 \end_layout
 
 \begin_layout Section
+Languages
+\end_layout
+
+\begin_layout Subsection
+C#
+\end_layout
+
+\begin_layout Subsection
+Go
+\end_layout
+
+\begin_layout Subsection
+Java
+\end_layout
+
+\begin_layout Section
 Existing implementations
 \end_layout
 
