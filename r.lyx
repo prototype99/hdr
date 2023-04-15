@@ -777,7 +777,7 @@ literal "false"
 \end_layout
 
 \begin_layout Section
-Languages
+IO performance
 \end_layout
 
 \begin_layout Standard
@@ -787,18 +787,6 @@ An important part of this project is the language that is used.
  would perform poorly at.
  Possible alternative languages that were identified in discussion were
  C# and go.
-\end_layout
-
-\begin_layout Subsection
-C#
-\end_layout
-
-\begin_layout Subsection
-Go
-\end_layout
-
-\begin_layout Subsection
-Java
 \end_layout
 
 \begin_layout Section
