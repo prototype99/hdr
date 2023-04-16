@@ -888,6 +888,66 @@ name "fig:Mean-number-of"
 
 \end_layout
 
+\end_inset
+
+This data so far has not considered popular languages such as C++, python
+ and rust.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Input/output-latency-(left"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows that rust and C++ are even more viable than go.
+ C++ may be too complex, however rust or go are potentially viable options.
+ 
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename io-combined.webp
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Input/output latency (left axis) and throughput (right axis)
+\begin_inset CommandInset citation
+LatexCommand citep
+key "retunskyBenchmarkingLowlevelRust2023"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Input/output-latency-(left"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
