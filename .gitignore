@@ -4,3 +4,8 @@ r.lyx~
 \#r.lyx#
 
 r.pdf
+
+
+# Added by cargo
+
+/target
