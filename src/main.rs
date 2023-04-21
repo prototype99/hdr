@@ -6,7 +6,7 @@ fn main() {
         .expect("file read error");
     let system_set = Command::new("sh")
             .arg("-c")
-            .arg("eix -c --system")
+            .arg("eix-update && eix -c --system")
             .output()
             .expect("failed to execute process");
     println!("status: {}", system_set.status);
