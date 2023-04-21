@@ -1186,7 +1186,7 @@ livegui-amd64-20230416T164657Z.iso
  will be used for each test to keep the results reproducible.
  It was identified that KVM is the most performant VM solution, boxes being
  a suitable GUI through which to easily setup and view the VM.
- Git's clone feature can be used to clone the software's binary.
+ Wget can be used to download the software.
 \end_layout
 
 \begin_layout Chapter
