@@ -2,7 +2,7 @@ use std::fs;
 use std::process::Command;
 
 fn main() {
-    let contents = fs::read_to_string("/home/seirra/Documents/src/hdr/.gitignore")
+    let contents = fs::read_to_string("/etc/portage/make.conf")
         .expect("file read error");
     let system_set = Command::new("sh")
             .arg("-c")
