@@ -314,7 +314,7 @@ Abbreviations
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="11" columns="2">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top" width="0pt">
@@ -333,6 +333,26 @@ GNU
 
 \begin_layout Plain Layout
 GNU's Not Unix
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GUI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Graphical UI
 \end_layout
 
 \end_inset
@@ -373,6 +393,46 @@ I
 
 \begin_layout Plain Layout
 The author
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ISO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ISO 9660 image
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+KVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kernel-based Virtual Machine
 \end_layout
 
 \end_inset
@@ -433,6 +493,26 @@ PM
 
 \begin_layout Plain Layout
 Package Manager
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User Interface
 \end_layout
 
 \end_inset
@@ -1073,6 +1153,15 @@ literal "false"
 Design
 \end_layout
 
+\begin_layout Section
+Language
+\end_layout
+
+\begin_layout Standard
+The language that will be used is rust, this is due to the generally favourable
+ input/output performance that it exhibits.
+\end_layout
+
 \begin_layout Chapter
 Implementation
 \end_layout
@@ -1082,9 +1171,21 @@ Testing
 \end_layout
 
 \begin_layout Standard
-For the testing process a VM will be made.
- The VM's virtual disk will be stored externally and copied to the internal
- storage, ensuring a theoretical identical VM.
+For the testing process a VM was used.
+ As the Gentoo live GUI ISO has rustc installed, it should be able to run
+ the built software in order to facilitate the Gentoo installation process:
+ a perfect test.
+ The identical 
+\begin_inset Quotes bld
+\end_inset
+
+livegui-amd64-20230416T164657Z.iso
+\begin_inset Quotes brd
+\end_inset
+
+ will be used for each test to keep the results reproducible.
+ It was identified that KVM is the most performant VM solution, boxes being
+ a suitable GUI through which to easily setup and view the VM.
 \end_layout
 
 \begin_layout Chapter
