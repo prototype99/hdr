@@ -28,7 +28,7 @@ fn main() {
         },
         _ => {
             if &args[1] == "install" {
-                println!("Installing {}...", &args[2]);
+                println!("Installing {}...", &args[2])
             } else {
                 panic!("unknown command, please choose install, or update")
             }
