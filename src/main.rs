@@ -5,7 +5,7 @@ use std::process::Command;
 fn main() {
     let args: Vec<String> = args().collect();
     match args.len() {
-        1 =>  panic!("no commands specified, please choose install, or update"),
+        1 =>  prompt(false),
         2 => {
             if &args[1] == "update" {
                 println!("updating system...");
@@ -23,15 +23,23 @@ fn main() {
             } else if &args[1] == "install" {
                 panic!("please specify packages to install")
             } else {
-                panic!("unknown command, please choose install, or update")
+                prompt(true)
             }
         },
         _ => {
             if &args[1] == "install" {
                 println!("Installing {}...", &args[2])
             } else {
-                panic!("unknown command, please choose install, or update")
+                prompt(true)
             }
         }
+    }
+}
+fn prompt(u: bool) {
+    const P: &str = ", please choose install, or update";
+    if u {
+        panic!("unknown command{}", P)
+    } else {
+        panic!("no commands specified{}", P)
     }
 }
