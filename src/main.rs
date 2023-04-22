@@ -4,7 +4,6 @@ use std::process::Command;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let mode = &args[1];
-    let modi = &args[2];
     if mode == "update" {
         println!("updating system...");
         let contents = fs::read_to_string("/etc/portage/make.conf")
@@ -19,6 +18,7 @@ fn main() {
         println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
         println!("{contents}");
     } else if mode == "install" {
+        let modi = &args[2];
         println!("Installing {}...", modi);
     }
 }
