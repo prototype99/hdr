@@ -13,7 +13,7 @@ fn main() {
                     .expect("file read error");
                 let system_set = Command::new("sh")
                     .arg("-c")
-                    .arg("eix-update && eix -c --system")
+                    .arg("readlink -f /etc/portage/make.profile")
                     .output()
                     .expect("failed to execute process");
                 println!("status: {}", system_set.status);
