@@ -18,6 +18,7 @@ fn main() {
                     .expect("failed to determine profile");
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
+                println!("{}",profile);
                 let paths = fs::read_dir(profile).unwrap();
                 for path in paths {
                     println!("Name: {}", path.unwrap().path().display())
