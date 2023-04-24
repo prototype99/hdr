@@ -1,5 +1,6 @@
-use std::fs;
+use std::{env, fs};
 use std::env::args;
+use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
@@ -19,6 +20,7 @@ fn main() {
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
                 println!("{}",profile);
+                println!("{}", get_current_working_dir().unwrap().display());
                 let paths = fs::read_dir(profile).unwrap();
                 for path in paths {
                     println!("Name: {}", path.unwrap().path().display())
@@ -39,6 +41,9 @@ fn main() {
             }
         }
     }
+}
+fn get_current_working_dir() -> std::io::Result<PathBuf> {
+    env::current_dir()
 }
 fn prompt(u: bool) {
     const P: &str = ", please choose install, or update";
