@@ -26,7 +26,10 @@ fn main() {
                     .output()
                     .expect("failed to list files");
                 for line in String::from_utf8_lossy(&list_cmd.stdout).to_string().lines() {
-                    println!("{}", line)
+                    println!("{}", line);
+                    if line == "parent" {
+                        println!("parent located")
+                    }
                 }
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
                 //println!("{contents}")
