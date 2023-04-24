@@ -15,7 +15,7 @@ fn main() {
                     .output()
                     .expect("failed to determine profile");
                 //println!("status: {}", system_set.status);
-                let profile = String::from_utf8_lossy(&profile_cmd.stdout).to_string();
+                let profile = String::from_utf8_lossy(&profile_cmd.stdout).trim().to_string();
                 println!("{}",profile);
                 profile_walk(profile);
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
