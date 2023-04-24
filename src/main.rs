@@ -47,9 +47,10 @@ fn profile_walk(p: String){
         println!("{}", line);
         if line == "parent" {
             let parent_suffix: String = "/parent".to_string();
-            let contents = read_to_string([pclone.clone(),parent_suffix].join(""))
-                .expect("file read error");
-            println!("{contents}");
+            println!("{}",[pclone.clone(),parent_suffix].join(""));
+            //let contents = read_to_string([pclone.clone(),parent_suffix].join(""))
+            //    .expect("file read error");
+            //println!("{contents}");
         }
     }
 }
