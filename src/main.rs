@@ -1,4 +1,3 @@
-use std::fs;
 use std::env::args;
 use std::process::Command;
 
@@ -19,10 +18,13 @@ fn main() {
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&profile_cmd.stdout).to_string();
                 println!("{}",profile);
-                let paths = fs::read_dir(profile).unwrap();
-                for path in paths {
-                    println!("Name: {}", path.unwrap().path().display())
-                }
+                let prefix = "find ".to_string();
+                let list_cmd = Command::new("sh")
+                    .arg("-c")
+                    .arg([prefix, profile].join("") + "-maxdepth 1 -type f")
+                    .output()
+                    .expect("failed to list files");
+                println!("{}", String::from_utf8_lossy(&list_cmd.stdout).to_string());
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
                 //println!("{contents}")
             } else if &args[1] == "install" {
