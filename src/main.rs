@@ -25,7 +25,9 @@ fn main() {
                     .arg([prefix, profile, suffix].join(""))
                     .output()
                     .expect("failed to list files");
-                println!("{}", String::from_utf8_lossy(&list_cmd.stdout).to_string());
+                for line in String::from_utf8_lossy(&list_cmd.stdout).to_string().lines() {
+                    println!("{}", line)
+                }
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
                 //println!("{contents}")
             } else if &args[1] == "install" {
