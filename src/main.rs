@@ -1,4 +1,5 @@
 use std::env::args;
+use std::fs::read_to_string;
 use std::process::Command;
 
 fn main() {
@@ -8,8 +9,6 @@ fn main() {
         2 => {
             if &args[1] == "update" {
                 println!("updating system...");
-                //let contents = fs::read_to_string("/etc/portage/make.conf")
-                //    .expect("file read error");
                 let profile_cmd = Command::new("sh")
                     .arg("-c")
                     .arg("readlink -f /etc/portage/make.profile")
@@ -20,7 +19,6 @@ fn main() {
                 println!("{}",profile);
                 profile_walk(profile);
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
-                //println!("{contents}")
             } else if &args[1] == "install" {
                 panic!("please specify packages to install")
             } else {
@@ -39,6 +37,7 @@ fn main() {
 fn profile_walk(p: String){
     let prefix = "ls -p ".to_string();
     let suffix = "| grep -v /".to_string();
+    let pclone = p.clone();
     let list_cmd = Command::new("sh")
         .arg("-c")
         .arg([prefix, p, suffix].join(""))
@@ -47,7 +46,10 @@ fn profile_walk(p: String){
     for line in String::from_utf8_lossy(&list_cmd.stdout).to_string().lines() {
         println!("{}", line);
         if line == "parent" {
-            println!("parent located")
+            let parent_suffix: String = "/parent".to_string();
+            let contents = read_to_string([pclone.clone(),parent_suffix].join(""))
+                .expect("file read error");
+            println!("{contents}");
         }
     }
 }
