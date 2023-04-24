@@ -18,8 +18,8 @@ fn main() {
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&profile_cmd.stdout).to_string();
                 println!("{}",profile);
-                let prefix = "find ".to_string();
-                let suffix = " -maxdepth 1 -type f".to_string();
+                let prefix = "ls -p ".to_string();
+                let suffix = "| grep -v /".to_string();
                 let list_cmd = Command::new("sh")
                     .arg("-c")
                     .arg([prefix, profile, suffix].join(""))
