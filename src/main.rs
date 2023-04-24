@@ -1,5 +1,5 @@
-use std::fs;
 use std::env::args;
+use std::fs::read_dir;
 use std::process::Command;
 
 fn main() {
@@ -19,7 +19,22 @@ fn main() {
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
                 println!("{}",profile);
-                let paths = fs::read_dir(profile).unwrap();
+                //let paths = read_dir(profile).unwrap();
+                let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
+                let paths = match read_dir(profile) {
+                    Ok(p) => p,
+                    Err(_) => {
+                        let prefix = "/mnt/gentoo".to_string();
+                        let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
+                        println!("{}", [prefix, profile].join(""));
+                        let prefix = "/mnt/gentoo".to_string();
+                        let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
+                        match read_dir([prefix, profile].join("")) {
+                            Ok(q) => q,
+                            Err(e) => !panic!("{}", e)
+                        }
+                    }
+                };
                 for path in paths {
                     println!("Name: {}", path.unwrap().path().display())
                 }
