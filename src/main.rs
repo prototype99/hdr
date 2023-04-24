@@ -17,7 +17,11 @@ fn main() {
                     .output()
                     .expect("failed to determine profile");
                 //println!("status: {}", system_set.status);
-                let profile = String::from_utf8_lossy(&system_set.stdout);
+                let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
+                let paths = fs::read_dir(profile).unwrap();
+                for path in paths {
+                    println!("Name: {}", path.unwrap().path().display())
+                }
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
                 //println!("{contents}")
             } else if &args[1] == "install" {
