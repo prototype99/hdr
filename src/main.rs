@@ -17,7 +17,7 @@ fn main() {
                     .output()
                     .expect("failed to execute process");
                 //println!("status: {}", system_set.status);
-                println!("stdout: {}", String::from_utf8_lossy(&system_set.stdout));
+                let profile = String::from_utf8_lossy(&system_set.stdout);
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
                 //println!("{contents}")
             } else if &args[1] == "install" {
