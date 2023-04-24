@@ -15,7 +15,7 @@ fn main() {
                     .arg("-c")
                     .arg("readlink -f /etc/portage/make.profile")
                     .output()
-                    .expect("failed to execute process");
+                    .expect("failed to determine profile");
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&system_set.stdout);
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
