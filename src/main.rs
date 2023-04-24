@@ -18,19 +18,7 @@ fn main() {
                 //println!("status: {}", system_set.status);
                 let profile = String::from_utf8_lossy(&profile_cmd.stdout).to_string();
                 println!("{}",profile);
-                let prefix = "ls -p ".to_string();
-                let suffix = "| grep -v /".to_string();
-                let list_cmd = Command::new("sh")
-                    .arg("-c")
-                    .arg([prefix, profile, suffix].join(""))
-                    .output()
-                    .expect("failed to list files");
-                for line in String::from_utf8_lossy(&list_cmd.stdout).to_string().lines() {
-                    println!("{}", line);
-                    if line == "parent" {
-                        println!("parent located")
-                    }
-                }
+                profile_walk(profile);
                 //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
                 //println!("{contents}")
             } else if &args[1] == "install" {
@@ -45,6 +33,21 @@ fn main() {
             } else {
                 prompt(true)
             }
+        }
+    }
+}
+fn profile_walk(p: String){
+    let prefix = "ls -p ".to_string();
+    let suffix = "| grep -v /".to_string();
+    let list_cmd = Command::new("sh")
+        .arg("-c")
+        .arg([prefix, p, suffix].join(""))
+        .output()
+        .expect("failed to list files");
+    for line in String::from_utf8_lossy(&list_cmd.stdout).to_string().lines() {
+        println!("{}", line);
+        if line == "parent" {
+            println!("parent located")
         }
     }
 }
