@@ -19,9 +19,10 @@ fn main() {
                 let profile = String::from_utf8_lossy(&profile_cmd.stdout).to_string();
                 println!("{}",profile);
                 let prefix = "find ".to_string();
+                let suffix = " -maxdepth 1 -type f".to_string();
                 let list_cmd = Command::new("sh")
                     .arg("-c")
-                    .arg([prefix, profile].join("") + "-maxdepth 1 -type f")
+                    .arg([prefix, profile, suffix].join(""))
                     .output()
                     .expect("failed to list files");
                 println!("{}", String::from_utf8_lossy(&list_cmd.stdout).to_string());
