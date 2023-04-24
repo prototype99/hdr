@@ -1,5 +1,5 @@
 use std::env::args;
-use std::fs::read_to_string;
+use std::fs::{read_dir, read_to_string};
 use std::process::Command;
 
 fn main() {
@@ -35,6 +35,10 @@ fn main() {
     }
 }
 fn profile_walk(p: String){
+    let paths = read_dir(p.clone()).unwrap();
+    for path in paths {
+        println!("Name: {}", path.unwrap().path().display())
+    }
     let prefix = "ls -p ".to_string();
     let suffix = "| grep -v /".to_string();
     let pclone = p.clone();
