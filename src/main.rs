@@ -11,13 +11,13 @@ fn main() {
                 println!("updating system...");
                 //let contents = fs::read_to_string("/etc/portage/make.conf")
                 //    .expect("file read error");
-                let system_set = Command::new("sh")
+                let profile_cmd = Command::new("sh")
                     .arg("-c")
                     .arg("readlink -f /etc/portage/make.profile")
                     .output()
                     .expect("failed to determine profile");
                 //println!("status: {}", system_set.status);
-                let profile = String::from_utf8_lossy(&system_set.stdout).to_string();
+                let profile = String::from_utf8_lossy(&profile_cmd.stdout).to_string();
                 println!("{}",profile);
                 let paths = fs::read_dir(profile).unwrap();
                 for path in paths {
