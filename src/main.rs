@@ -1,4 +1,4 @@
-use std::{fs};
+use std::fs;
 use std::env::args;
 use std::process::Command;
 
