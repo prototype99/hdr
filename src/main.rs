@@ -29,7 +29,7 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(p: PathBuf){
+fn profile_walk(p: PathBuf, mut u: String){
     let pclone = p.clone();
     let paths = read_dir(p).unwrap();
     for path in paths {
@@ -45,8 +45,10 @@ fn profile_walk(p: PathBuf){
                 }
                 p_local.push(line_path);
                 println!("{}",p_local.to_string_lossy());
-                profile_walk(p_local);
+                profile_walk(p_local, u.clone());
             }
+        } else if path_unwrap.path().to_string_lossy().contains("package.use.mask") {
+            u = u + &*read_to_string(path_unwrap.path()).unwrap();
         }
     }
 }
@@ -66,5 +68,6 @@ fn update() {
     let profile = profile_result.to_string_lossy();
     println!("{}",profile);
     //generate profile data
-    profile_walk(PathBuf::from(profile.to_string()));
+    let u: String = "".to_string();
+    profile_walk(PathBuf::from(profile.to_string()), u);
 }
