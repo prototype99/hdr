@@ -57,5 +57,6 @@ fn update() {
     let profile_result = read_link("/etc/portage/make.profile").unwrap();
     let profile = profile_result.to_string_lossy();
     println!("{}",profile);
+    //generate profile data
     profile_walk(profile);
 }
