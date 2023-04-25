@@ -30,8 +30,9 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(p: Cow<str>){
-    let paths = read_dir(p.to_string()).unwrap();
+fn profile_walk(p: PathBuf){
+    let pclone = p.clone();
+    let paths = read_dir(p).unwrap();
     for path in paths {
         let path_unwrap = path.unwrap();
         println!("{}", path_unwrap.path().display());
@@ -39,13 +40,14 @@ fn profile_walk(p: Cow<str>){
         if path_unwrap.path().to_string_lossy().contains("parent") {
             for line in read_to_string(path_unwrap.path()).unwrap().lines() {
                 let mut line_path = PathBuf::from(line);
-                let mut p_local = PathBuf::from(p.clone().to_string());
+                let mut p_local = pclone.clone();
                 while line_path.starts_with("..") {
                     p_local.pop();
                     line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
                 p_local.push(line_path);
                 println!("{}",p_local.to_string_lossy());
+                profile_walk(p_local);
             }
         }
     }
@@ -66,5 +68,5 @@ fn update() {
     let profile = profile_result.to_string_lossy();
     println!("{}",profile);
     //generate profile data
-    profile_walk(profile);
+    profile_walk(PathBuf::from(profile.to_string()));
 }
