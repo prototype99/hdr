@@ -3,12 +3,15 @@ use std::fs::{read_dir, read_to_string};
 use std::process::Command;
 
 fn main() {
+    //collect arguments
     let args: Vec<String> = args().collect();
+    //number of arguments influences interactions
     match args.len() {
         1 =>  prompt(false),
         2 => {
             if &args[1] == "update" {
                 println!("updating system...");
+                //find the starting point for profile, is there a native rust function?
                 let profile_cmd = Command::new("sh")
                     .arg("-c")
                     .arg("readlink -f /etc/portage/make.profile")
@@ -34,6 +37,7 @@ fn main() {
         }
     }
 }
+//used to gain all necessary profile information
 fn profile_walk(p: String){
     let paths = read_dir(p.clone()).unwrap();
     for path in paths {
@@ -57,6 +61,7 @@ fn profile_walk(p: String){
         }
     }
 }
+//this function helps deduplicate strings
 fn prompt(u: bool) {
     const P: &str = ", please choose install, or update";
     if u {
