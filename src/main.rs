@@ -1,4 +1,3 @@
-use std::borrow::Cow;
 use std::env::args;
 use std::fs::{read_dir, read_link, read_to_string};
 use std::path::PathBuf;
