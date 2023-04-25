@@ -30,21 +30,12 @@ fn main() {
 }
 //used to gain all necessary profile information
 fn profile_walk(p: String){
-    let paths = read_dir(p.clone()).unwrap();
-    for path in paths {
-        println!("Name: {}", path.unwrap().path().display())
-    }
-    let prefix = "ls -p ".to_string();
-    let suffix = "| grep -v /".to_string();
     let pclone = p.clone();
-    let list_cmd = Command::new("sh")
-        .arg("-c")
-        .arg([prefix, p, suffix].join(""))
-        .output()
-        .expect("failed to list files");
-    for line in String::from_utf8_lossy(&list_cmd.stdout).to_string().lines() {
-        println!("{}", line);
-        if line == "parent" {
+    let paths = read_dir(p).unwrap();
+    for path in paths {
+        let path_unwrap = path.unwrap();
+        println!("{}", path_unwrap.path().display());
+        if path_unwrap.path().to_string_lossy() == "parent" {
             let parent_suffix: String = "/parent".to_string();
             let contents = read_to_string([pclone.clone(),parent_suffix].join(""))
                 .expect("file read error");
