@@ -35,7 +35,7 @@ fn profile_walk(p: String){
     for path in paths {
         let path_unwrap = path.unwrap();
         println!("{}", path_unwrap.path().display());
-        if path_unwrap.path().to_string_lossy() == "parent" {
+        if path_unwrap.path().to_string_lossy().contains("parent") {
             let parent_suffix: String = "/parent".to_string();
             let contents = read_to_string([pclone.clone(),parent_suffix].join(""))
                 .expect("file read error");
