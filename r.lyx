@@ -1167,6 +1167,17 @@ Implementation
 \end_layout
 
 \begin_layout Section
+Development
+\end_layout
+
+\begin_layout Standard
+Although it was challenging at first to learn, rust has at times simplified
+ the programming process due to its large plethora of built-in libraries
+ that can effectively work as substitutes for shell commands; this results
+ in easier to read, lighter, more performant code overall.
+\end_layout
+
+\begin_layout Section
 Testing
 \end_layout
 
