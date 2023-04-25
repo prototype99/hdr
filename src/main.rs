@@ -10,18 +10,7 @@ fn main() {
         1 =>  prompt(false),
         2 => {
             if &args[1] == "update" {
-                println!("updating system...");
-                //find the starting point for profile, is there a native rust function?
-                let profile_cmd = Command::new("sh")
-                    .arg("-c")
-                    .arg("readlink -f /etc/portage/make.profile")
-                    .output()
-                    .expect("failed to determine profile");
-                //println!("status: {}", system_set.status);
-                let profile = String::from_utf8_lossy(&profile_cmd.stdout).trim().to_string();
-                println!("{}",profile);
-                profile_walk(profile);
-                //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
+                update()
             } else if &args[1] == "install" {
                 panic!("please specify packages to install")
             } else {
@@ -31,6 +20,8 @@ fn main() {
         _ => {
             if &args[1] == "install" {
                 println!("Installing {}...", &args[2])
+            } else if &args[1] == "update" {
+                update()
             } else {
                 prompt(true)
             }
@@ -69,4 +60,18 @@ fn prompt(u: bool) {
     } else {
         panic!("no commands specified{}", P)
     }
+}
+fn update() {
+    println!("updating system...");
+    //find the starting point for profile, is there a native rust function?
+    let profile_cmd = Command::new("sh")
+        .arg("-c")
+        .arg("readlink -f /etc/portage/make.profile")
+        .output()
+        .expect("failed to determine profile");
+    //println!("status: {}", system_set.status);
+    let profile = String::from_utf8_lossy(&profile_cmd.stdout).trim().to_string();
+    println!("{}",profile);
+    profile_walk(profile);
+    //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
 }
