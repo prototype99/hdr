@@ -36,9 +36,9 @@ fn profile_walk(p: Cow<str>){
         println!("{}", path_unwrap.path().display());
         //check for parent directories
         if path_unwrap.path().to_string_lossy().contains("parent") {
-            let contents = read_to_string(path_unwrap.path())
-                .expect("file read error");
-            println!("{contents}");
+            for line in read_to_string(path_unwrap.path()) {
+                println!("{}", line);
+            }
         }
     }
 }
