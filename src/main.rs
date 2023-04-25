@@ -44,8 +44,8 @@ fn profile_walk(p: Cow<str>){
                     p_local.pop();
                     line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
-                println!("{}", p_local.to_string_lossy());
-                println!("{}", line_path.to_string_lossy());
+                p_local.push(line_path);
+                println!("{}",p_local.to_string_lossy());
             }
         }
     }
