@@ -30,14 +30,12 @@ fn main() {
 }
 //used to gain all necessary profile information
 fn profile_walk(p: String){
-    let pclone = p.clone();
     let paths = read_dir(p).unwrap();
     for path in paths {
         let path_unwrap = path.unwrap();
         println!("{}", path_unwrap.path().display());
         if path_unwrap.path().to_string_lossy().contains("parent") {
-            let parent_suffix: String = "/parent".to_string();
-            let contents = read_to_string([pclone.clone(),parent_suffix].join(""))
+            let contents = read_to_string(path_unwrap.path())
                 .expect("file read error");
             println!("{contents}");
         }
