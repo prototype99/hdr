@@ -35,7 +35,6 @@ fn profile_walk(p: PathBuf){
     let paths = read_dir(p).unwrap();
     for path in paths {
         let path_unwrap = path.unwrap();
-        println!("{}", path_unwrap.path().display());
         //check for parent directories
         if path_unwrap.path().to_string_lossy().contains("parent") {
             for line in read_to_string(path_unwrap.path()).unwrap().lines() {
