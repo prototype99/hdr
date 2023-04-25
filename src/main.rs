@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 use std::env::args;
 use std::fs::{read_dir, read_link, read_to_string};
+use std::path::PathBuf;
 
 fn main() {
     //collect arguments
@@ -37,7 +38,8 @@ fn profile_walk(p: Cow<str>){
         //check for parent directories
         if path_unwrap.path().to_string_lossy().contains("parent") {
             for line in read_to_string(path_unwrap.path()) {
-                println!("{}", line);
+                let line_path = PathBuf::from(line);
+                println!("{}", line_path.to_string_lossy());
             }
         }
     }
