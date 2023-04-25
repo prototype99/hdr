@@ -38,11 +38,11 @@ fn profile_walk(p: Cow<str>){
         //check for parent directories
         if path_unwrap.path().to_string_lossy().contains("parent") {
             for line in read_to_string(path_unwrap.path()).unwrap().lines() {
-                let line_path = PathBuf::from(line);
+                let mut line_path = PathBuf::from(line);
                 let mut p_local = PathBuf::from(p.clone().to_string());
                 while line_path.starts_with("..") {
                     p_local.pop();
-                    line_path.strip_prefix("../").expect("error calculating profile parent");
+                    line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
                 println!("{}", p_local.to_string_lossy());
                 println!("{}", line_path.to_string_lossy());
