@@ -1,6 +1,6 @@
+use std::borrow::Cow;
 use std::env::args;
-use std::fs::{read_dir, read_to_string};
-use std::process::Command;
+use std::fs::{read_dir, read_link, read_to_string};
 
 fn main() {
     //collect arguments
@@ -29,8 +29,8 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(p: String){
-    let paths = read_dir(p).unwrap();
+fn profile_walk(p: Cow<str>){
+    let paths = read_dir(p.to_string()).unwrap();
     for path in paths {
         let path_unwrap = path.unwrap();
         println!("{}", path_unwrap.path().display());
@@ -53,15 +53,9 @@ fn prompt(u: bool) {
 }
 fn update() {
     println!("updating system...");
-    //find the starting point for profile, is there a native rust function?
-    let profile_cmd = Command::new("sh")
-        .arg("-c")
-        .arg("readlink -f /etc/portage/make.profile")
-        .output()
-        .expect("failed to determine profile");
-    //println!("status: {}", system_set.status);
-    let profile = String::from_utf8_lossy(&profile_cmd.stdout).trim().to_string();
+    //find the starting point for profile
+    let profile_result = read_link("/etc/portage/make.profile").unwrap();
+    let profile = profile_result.to_string_lossy();
     println!("{}",profile);
     profile_walk(profile);
-    //println!("stderr: {}", String::from_utf8_lossy(&system_set.stderr));
 }
