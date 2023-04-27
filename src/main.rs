@@ -55,7 +55,7 @@ fn profile_walk(profile: PathBuf, mut d: [String; 4]){
             d[1] = d[1].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_str.contains("packages") {
             d[2] = d[2].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.ends_with("/use.mask") {
+        } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.mask") || path_real.ends_with("/use.stable.force") {
             d[3] = d[3].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         }
     }
