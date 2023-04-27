@@ -53,6 +53,8 @@ fn profile_walk(profile: PathBuf, mut d: [String; 3]){
             d[1] = d[1].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_unwrap.path().to_string_lossy().contains("packages") {
             d[2] = d[2].clone() + &*read_to_string(path_unwrap.path()).unwrap();
+        } else if path_unwrap.path().ends_with("/use.mask") {
+            d[3] = d[3].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         }
     }
 }
@@ -75,5 +77,6 @@ fn update() {
     let a: String = "".to_string();
     let b: String = "".to_string();
     let c: String = "".to_string();
-    profile_walk(PathBuf::from(profile.to_string()), [a, b, c]);
+    let d: String = "".to_string();
+    profile_walk(PathBuf::from(profile.to_string()), [a, b, c, d]);
 }
