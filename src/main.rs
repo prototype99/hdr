@@ -29,7 +29,7 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(profile: PathBuf, mut d: [String; 4]){
+fn profile_walk(profile: PathBuf, mut d: [String; 6]){
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
     for path in paths {
@@ -51,12 +51,16 @@ fn profile_walk(profile: PathBuf, mut d: [String; 4]){
             }
         } else if path_str.contains("package.mask") {
             d[0] = d[0].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_str.contains("package.use") {
+        } else if path_real.ends_with("/package.use") {
             d[1] = d[1].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_str.contains("packages") {
             d[2] = d[2].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.mask") || path_real.ends_with("/use.stable.force") {
+        } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.stable.mask") {
             d[3] = d[3].clone() + &*read_to_string(path_unwrap.path()).unwrap();
+        } else if path_real.ends_with("/package.use.mask") {
+            d[4] = d[4].clone() + &*read_to_string(path_unwrap.path()).unwrap();
+        } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
+            d[5] = d[5].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         }
     }
 }
@@ -80,5 +84,7 @@ fn update() {
     let b: String = "".to_string();
     let c: String = "".to_string();
     let d: String = "".to_string();
-    profile_walk(PathBuf::from(profile.to_string()), [a, b, c, d]);
+    let e: String = "".to_string();
+    let f: String = "".to_string();
+    profile_walk(PathBuf::from(profile.to_string()), [a, b, c, d, e, f]);
 }
