@@ -29,7 +29,7 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(profile: PathBuf, mut d: [String; 3]){
+fn profile_walk(profile: PathBuf, mut d: [String; 4]){
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
     for path in paths {
