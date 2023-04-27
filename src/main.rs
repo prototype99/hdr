@@ -47,8 +47,6 @@ fn profile_walk(p: PathBuf, mut u: String, mut m: String){
                 println!("{}",p_local.to_string_lossy());
                 profile_walk(p_local, u.clone(), m.clone());
             }
-        } else if path_unwrap.path().to_string_lossy().contains("package.use.mask") {
-            u = u + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_unwrap.path().to_string_lossy().contains("package.mask") {
             m = m + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_unwrap.path().to_string_lossy().contains("package.use") {
