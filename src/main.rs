@@ -35,8 +35,9 @@ fn profile_walk(profile: PathBuf, mut d: [String; 3]){
     for path in paths {
         let path_unwrap = path.unwrap();
         let path_real = path_unwrap.path();
+        let path_str = path_real.to_string_lossy();
         //check for parent directories
-        if path_real.to_string_lossy().contains("parent") {
+        if path_str.contains("parent") {
             for line in read_to_string(path_unwrap.path()).unwrap().lines() {
                 let mut line_path = PathBuf::from(line);
                 let mut p_local = pclone.clone();
@@ -48,11 +49,11 @@ fn profile_walk(profile: PathBuf, mut d: [String; 3]){
                 println!("{}",p_local.to_string_lossy());
                 profile_walk(p_local, d.clone());
             }
-        } else if path_real.to_string_lossy().contains("package.mask") {
+        } else if path_str.contains("package.mask") {
             d[0] = d[0].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.to_string_lossy().contains("package.use") {
+        } else if path_str.contains("package.use") {
             d[1] = d[1].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.to_string_lossy().contains("packages") {
+        } else if path_str.contains("packages") {
             d[2] = d[2].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_real.ends_with("/use.mask") {
             d[3] = d[3].clone() + &*read_to_string(path_unwrap.path()).unwrap();
