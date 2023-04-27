@@ -29,7 +29,7 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(profile: PathBuf, mut u: String, mut m: String, mut p: String){
+fn profile_walk(profile: PathBuf, mut d: [String; 3]){
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
     for path in paths {
@@ -45,14 +45,14 @@ fn profile_walk(profile: PathBuf, mut u: String, mut m: String, mut p: String){
                 }
                 p_local.push(line_path);
                 println!("{}",p_local.to_string_lossy());
-                profile_walk(p_local, u.clone(), m.clone(), p.clone());
+                profile_walk(p_local, d.clone());
             }
         } else if path_unwrap.path().to_string_lossy().contains("package.mask") {
-            m = m + &*read_to_string(path_unwrap.path()).unwrap();
+            d[0] = d[0].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_unwrap.path().to_string_lossy().contains("package.use") {
-            u = u + &*read_to_string(path_unwrap.path()).unwrap();
+            d[1] = d[1].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         } else if path_unwrap.path().to_string_lossy().contains("packages") {
-            p = p + &*read_to_string(path_unwrap.path()).unwrap();
+            d[2] = d[2].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         }
     }
 }
@@ -75,5 +75,5 @@ fn update() {
     let m: String = "".to_string();
     let u: String = "".to_string();
     let p: String = "".to_string();
-    profile_walk(PathBuf::from(profile.to_string()), u, m, p);
+    profile_walk(PathBuf::from(profile.to_string()), [m, u, p]);
 }
