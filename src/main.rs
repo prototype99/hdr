@@ -29,9 +29,9 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(p: PathBuf, mut u: String, mut m: String){
-    let pclone = p.clone();
-    let paths = read_dir(p).unwrap();
+fn profile_walk(profile: PathBuf, mut u: String, mut m: String){
+    let pclone = profile.clone();
+    let paths = read_dir(profile).unwrap();
     for path in paths {
         let path_unwrap = path.unwrap();
         //check for parent directories
