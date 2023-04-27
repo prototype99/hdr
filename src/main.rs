@@ -72,8 +72,8 @@ fn update() {
     let profile = profile_result.to_string_lossy();
     println!("{}",profile);
     //generate profile data
-    let m: String = "".to_string();
-    let u: String = "".to_string();
-    let p: String = "".to_string();
-    profile_walk(PathBuf::from(profile.to_string()), [m, u, p]);
+    let a: String = "".to_string();
+    let b: String = "".to_string();
+    let c: String = "".to_string();
+    profile_walk(PathBuf::from(profile.to_string()), [a, b, c]);
 }
