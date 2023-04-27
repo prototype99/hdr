@@ -38,7 +38,7 @@ fn profile_walk(profile: PathBuf, mut d: [String; 4]){
         let path_str = path_real.to_string_lossy();
         //check for parent directories
         if path_str.contains("parent") {
-            for line in read_to_string(path_unwrap.path()).unwrap().lines() {
+            for line in read_to_string(path_real).unwrap().lines() {
                 let mut line_path = PathBuf::from(line);
                 let mut p_local = pclone.clone();
                 while line_path.starts_with("..") {
