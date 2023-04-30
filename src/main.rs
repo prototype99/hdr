@@ -30,7 +30,7 @@ fn main() {
     }
 }
 //used to find all used profile directories
-fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>){
+fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>) -> Vec<Cow<str>> {
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
     for path in paths {
@@ -53,10 +53,11 @@ fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>){
                 } else {
                     profiles.push(Cow::from(p_string));
                 }
-                profile_walk(p_local, profiles.clone());
+                profiles = profile_walk(p_local, profiles);
             }
         }
     }
+    return profiles;
 }
 //this function helps deduplicate strings
 fn prompt(u: bool) {
@@ -73,8 +74,7 @@ fn update() {
     let profile_result = read_link("/etc/portage/make.profile").unwrap();
     let profile_start = profile_result.to_string_lossy();
     println!("{}", profile_start);
-    let profiles = vec![profile_start.clone()];
-    profile_walk(profile_start.parse().unwrap(), profiles.clone());
+    let profiles = profile_walk(profile_start.parse().unwrap(), vec![profile_start.clone()]);
     //read profile data
     let mut a: String = "".to_string();
     let mut b: String = "".to_string();
@@ -83,6 +83,7 @@ fn update() {
     let mut e: String = "".to_string();
     let mut f: String = "".to_string();
     for profile in profiles {
+        println!("{}", profile);
         let path_real = PathBuf::from(profile.to_string());
         let path_str = path_real.to_string_lossy();
         if path_str.contains("package.mask") {
