@@ -73,8 +73,7 @@ fn update() {
     //find the starting point for profile
     let profile_result = read_link("/etc/portage/make.profile").unwrap();
     let profile_start = profile_result.to_string_lossy();
-    println!("{}", profile_start);
-    let profiles = profile_walk(profile_start.parse().unwrap(), vec![profile_start.clone()]);
+    let profiles = profile_walk(profile_start.parse().unwrap(), vec![profile_start]);
     //read profile data
     let mut a: String = "".to_string();
     let mut b: String = "".to_string();
