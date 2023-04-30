@@ -46,10 +46,11 @@ fn profile_walk(profile: PathBuf, mut d: [String; 6]){
                     line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
                 p_local.push(line_path);
-                if !p_local.ends_with("/") {
-                    println!("{}",p_local.to_string_lossy() + "/");
+                let p_string = p_local.to_string_lossy();
+                if p_string.chars().last().unwrap() != '/' {
+                    println!("{}",p_string + "/");
                 } else {
-                    println!("{}",p_local.to_string_lossy());
+                    println!("{}",p_string);
                 }
                 profile_walk(p_local, d.clone());
             }
