@@ -46,7 +46,11 @@ fn profile_walk(profile: PathBuf, mut d: [String; 6]){
                     line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
                 p_local.push(line_path);
-                println!("{}",p_local.to_string_lossy());
+                if !p_local.ends_with("/") {
+                    println!("{}",p_local.to_string_lossy() + "/");
+                } else {
+                    println!("{}",p_local.to_string_lossy());
+                }
                 profile_walk(p_local, d.clone());
             }
         } else if path_str.contains("package.mask") {
