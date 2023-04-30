@@ -1,3 +1,4 @@
+use std::borrow::Cow;
 use std::env::args;
 use std::fs::{read_dir, read_link, read_to_string};
 use std::path::PathBuf;
@@ -29,7 +30,7 @@ fn main() {
     }
 }
 //used to gain all necessary profile information
-fn profile_walk(profile: PathBuf, mut d: [String; 6]){
+fn profile_walk(profile: PathBuf, profiles: Vec<Cow<str>>){
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
     for path in paths {
@@ -52,20 +53,8 @@ fn profile_walk(profile: PathBuf, mut d: [String; 6]){
                 } else {
                     println!("{}",p_string);
                 }
-                profile_walk(p_local, d.clone());
+                profile_walk(p_local, profiles.clone());
             }
-        } else if path_str.contains("package.mask") {
-            d[0] = d[0].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
-            d[1] = d[1].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_str.contains("packages") {
-            d[2] = d[2].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.stable.mask") {
-            d[3] = d[3].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.ends_with("/package.use.mask") || path_real.ends_with("/package.use.stable.mask") {
-            d[4] = d[4].clone() + &*read_to_string(path_unwrap.path()).unwrap();
-        } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
-            d[5] = d[5].clone() + &*read_to_string(path_unwrap.path()).unwrap();
         }
     }
 }
@@ -82,14 +71,32 @@ fn update() {
     println!("updating system...");
     //find the starting point for profile
     let profile_result = read_link("/etc/portage/make.profile").unwrap();
-    let profile = profile_result.to_string_lossy();
-    println!("{}",profile);
+    let profile_start = profile_result.to_string_lossy();
+    println!("{}", profile_start);
+    let profiles = vec![profile_start.clone()];
+    profile_walk(profile_start.parse().unwrap(), profiles.clone());
     //generate profile data
-    let a: String = "".to_string();
-    let b: String = "".to_string();
-    let c: String = "".to_string();
-    let d: String = "".to_string();
-    let e: String = "".to_string();
-    let f: String = "".to_string();
-    profile_walk(PathBuf::from(profile.to_string()), [a, b, c, d, e, f]);
+    let mut a: String = "".to_string();
+    let mut b: String = "".to_string();
+    let mut c: String = "".to_string();
+    let mut d: String = "".to_string();
+    let mut e: String = "".to_string();
+    let mut f: String = "".to_string();
+    for profile in profiles {
+        let path_real = PathBuf::from(profile.to_string());
+        let path_str = path_real.to_string_lossy();
+        if path_str.contains("package.mask") {
+            a = a.clone() + &*read_to_string(path_real).unwrap();
+        } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
+            b = b.clone() + &*read_to_string(path_real).unwrap();
+        } else if path_str.contains("packages") {
+            c = c.clone() + &*read_to_string(path_real).unwrap();
+        } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.stable.mask") {
+            d = d.clone() + &*read_to_string(path_real).unwrap();
+        } else if path_real.ends_with("/package.use.mask") || path_real.ends_with("/package.use.stable.mask") {
+            e = e.clone() + &*read_to_string(path_real).unwrap();
+        } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
+            f = f.clone() + &*read_to_string(path_real).unwrap();
+        }
+    }
 }
