@@ -29,7 +29,7 @@ fn main() {
         }
     }
 }
-//used to gain all necessary profile information
+//used to find all used profile directories
 fn profile_walk(profile: PathBuf, profiles: Vec<Cow<str>>){
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
@@ -75,7 +75,7 @@ fn update() {
     println!("{}", profile_start);
     let profiles = vec![profile_start.clone()];
     profile_walk(profile_start.parse().unwrap(), profiles.clone());
-    //generate profile data
+    //read profile data
     let mut a: String = "".to_string();
     let mut b: String = "".to_string();
     let mut c: String = "".to_string();
