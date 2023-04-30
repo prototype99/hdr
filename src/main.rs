@@ -30,7 +30,7 @@ fn main() {
     }
 }
 //used to find all used profile directories
-fn profile_walk(profile: PathBuf, profiles: Vec<Cow<str>>){
+fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>){
     let pclone = profile.clone();
     let paths = read_dir(profile).unwrap();
     for path in paths {
@@ -47,11 +47,11 @@ fn profile_walk(profile: PathBuf, profiles: Vec<Cow<str>>){
                     line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
                 p_local.push(line_path);
-                let p_string = p_local.to_string_lossy();
+                let p_string = p_local.display().to_string();
                 if p_string.chars().last().unwrap() != '/' {
-                    println!("{}",p_string + "/");
+                    profiles.push(Cow::from(p_string + "/"));
                 } else {
-                    println!("{}",p_string);
+                    profiles.push(Cow::from(p_string));
                 }
                 profile_walk(p_local, profiles.clone());
             }
