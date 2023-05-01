@@ -87,6 +87,9 @@ fn update() {
     let mut e: String = "".to_string();
     let mut f: String = "".to_string();
     let mut elibc: String = "".to_string();
+    let mut kernel: String = "".to_string();
+    let mut userland: String = "".to_string();
+    let mut input_devices: String = "".to_string();
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
@@ -106,7 +109,15 @@ fn update() {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/make.defaults") {
                 for line in read_to_string(path_real).unwrap().lines() {
-                    println!("{}", line)
+                    if line.starts_with("ELIBC") {
+                        elibc += line
+                    } else if line.starts_with("KERNEL") {
+                        kernel += line
+                    } else if line.starts_with("USERLAND") {
+                        userland += line
+                    } else if line.starts_with("INPUT_DEVICES") {
+                        input_devices += line
+                    }
                 }
             }
         }
