@@ -32,8 +32,9 @@ fn main() {
 }
 //used to collect all accepted licences
 fn licence_walk(startpoint: &str, lines: Lines, mut licences: Vec<String>) -> Vec<String> {
+    let cleanpoint = [startpoint.strip_prefix("@").unwrap(), " "].join("");
     for line in lines {
-        if line.starts_with(startpoint.strip_prefix("@").unwrap()) {
+        if line.starts_with(cleanpoint.as_str()) {
             let line_split: Vec<&str> = line.split_whitespace().collect();
             for split in line_split {
                 println!("{}", split);
