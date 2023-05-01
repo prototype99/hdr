@@ -89,22 +89,24 @@ fn update() {
     let mut use_expand: String = "".to_string();
     for profile in profiles {
         println!("{}", profile);
-        let path_real = PathBuf::from(profile.to_string());
-        let path_str = path_real.to_string_lossy();
-        if path_str.contains("package.mask") {
-            a = a.clone() + &*read_to_string(path_real).unwrap();
-        } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
-            b = b.clone() + &*read_to_string(path_real).unwrap();
-        } else if path_str.contains("packages") {
-            c = c.clone() + &*read_to_string(path_real).unwrap();
-        } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.stable.mask") {
-            d = d.clone() + &*read_to_string(path_real).unwrap();
-        } else if path_real.ends_with("/package.use.mask") || path_real.ends_with("/package.use.stable.mask") {
-            e = e.clone() + &*read_to_string(path_real).unwrap();
-        } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
-            f = f.clone() + &*read_to_string(path_real).unwrap();
-        } else if path_real.ends_with("/use.force") || path_real.ends_with("/make.defaults") {
-            f = f.clone() + &*read_to_string(path_real).unwrap();
+        for path in read_dir(profile.to_string()).unwrap() {
+            let path_real = path.unwrap().path();
+            let path_str = path_real.to_string_lossy();
+            if path_str.contains("package.mask") {
+                a = a.clone() + &*read_to_string(path_real).unwrap();
+            } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
+                b = b.clone() + &*read_to_string(path_real).unwrap();
+            } else if path_str.contains("packages") {
+                c = c.clone() + &*read_to_string(path_real).unwrap();
+            } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.stable.mask") {
+                d = d.clone() + &*read_to_string(path_real).unwrap();
+            } else if path_real.ends_with("/package.use.mask") || path_real.ends_with("/package.use.stable.mask") {
+                e = e.clone() + &*read_to_string(path_real).unwrap();
+            } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
+                f = f.clone() + &*read_to_string(path_real).unwrap();
+            } else if path_real.ends_with("/use.force") || path_real.ends_with("/make.defaults") {
+                f = f.clone() + &*read_to_string(path_real).unwrap();
+            }
         }
     }
 }
