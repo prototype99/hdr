@@ -79,6 +79,14 @@ fn update() {
     let profile_result = read_link("/etc/portage/make.profile").unwrap();
     let profile_start = profile_result.to_string_lossy();
     let profiles = profile_walk(profile_start.parse().unwrap(), vec![profile_start]);
+    let mut licences = "".to_string();
+    //read accepted licences
+    for line in read_to_string("/var/db/repos/gentoo/profiles/license_groups").unwrap().lines() {
+        if line.starts_with("FREE ") {
+            licences += line;
+            println!("{}", licences)
+        }
+    }
     //read profile data
     let mut a: String = "".to_string();
     let mut b: String = "".to_string();
