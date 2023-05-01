@@ -105,7 +105,9 @@ fn update() {
             } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/use.force") || path_real.ends_with("/make.defaults") {
-                f = f.clone() + &*read_to_string(path_real).unwrap();
+                for line in read_to_string(path_real).unwrap().lines() {
+                    println!("{}", line)
+                }
             }
         }
     }
