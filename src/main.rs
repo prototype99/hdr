@@ -32,10 +32,8 @@ fn main() {
 //used to find all used profile directories
 fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>) -> Vec<Cow<str>> {
     let pclone = profile.clone();
-    let paths = read_dir(profile.clone()).unwrap();
-    for path in paths {
-        let path_unwrap = path.unwrap();
-        let path_real = path_unwrap.path();
+    for path in read_dir(profile.clone()).unwrap() {
+        let path_real = path.unwrap().path();
         let path_str = path_real.to_string_lossy();
         //check for parent directories
         if path_str.contains("parent") {
@@ -88,6 +86,7 @@ fn update() {
     let mut d: String = "".to_string();
     let mut e: String = "".to_string();
     let mut f: String = "".to_string();
+    let mut use_expand: String = "".to_string();
     for profile in profiles {
         println!("{}", profile);
         let path_real = PathBuf::from(profile.to_string());
@@ -103,6 +102,8 @@ fn update() {
         } else if path_real.ends_with("/package.use.mask") || path_real.ends_with("/package.use.stable.mask") {
             e = e.clone() + &*read_to_string(path_real).unwrap();
         } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
+            f = f.clone() + &*read_to_string(path_real).unwrap();
+        } else if path_real.ends_with("/use.force") || path_real.ends_with("/make.defaults") {
             f = f.clone() + &*read_to_string(path_real).unwrap();
         }
     }
