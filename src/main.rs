@@ -88,16 +88,16 @@ fn update() {
         }
     }
     //read profile data
-    let mut a: String = "".to_string();
-    let mut b: String = "".to_string();
-    let mut c: String = "".to_string();
-    let mut d: String = "".to_string();
-    let mut e: String = "".to_string();
-    let mut f: String = "".to_string();
-    let mut elibc: String = "".to_string();
-    let mut kernel: String = "".to_string();
-    let mut userland: String = "".to_string();
-    let mut input_devices: String = "".to_string();
+    let mut a = "".to_string();
+    let mut b = "".to_string();
+    let mut c = "".to_string();
+    let mut d = "".to_string();
+    let mut e = "".to_string();
+    let mut f = "".to_string();
+    let mut elibc = "".to_string();
+    let mut kernel = "".to_string();
+    let mut userland = "".to_string();
+    let mut input_devices = "".to_string();
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
