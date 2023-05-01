@@ -2,6 +2,7 @@ use std::borrow::Cow;
 use std::env::args;
 use std::fs::{read_dir, read_link, read_to_string};
 use std::path::PathBuf;
+use std::str::Lines;
 
 fn main() {
     //collect arguments
@@ -28,6 +29,19 @@ fn main() {
             }
         }
     }
+}
+//used to collect all accepted licences
+fn licence_walk(startpoint: &str, lines: Lines, mut licences: Vec<String>) -> Vec<String> {
+    for line in lines {
+        if line.starts_with(startpoint.strip_prefix("@").unwrap()) {
+            let line_split: Vec<&str> = line.split_whitespace().collect();
+            for split in line_split {
+                println!("{}", split);
+                licences.push(split.parse().unwrap());
+            }
+        }
+    }
+    return licences;
 }
 //used to find all used profile directories
 fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>) -> Vec<Cow<str>> {
@@ -79,14 +93,8 @@ fn update() {
     let profile_result = read_link("/etc/portage/make.profile").unwrap();
     let profile_start = profile_result.to_string_lossy();
     let profiles = profile_walk(profile_start.parse().unwrap(), vec![profile_start]);
-    let mut licences = "".to_string();
     //read accepted licences
-    for line in read_to_string("/var/db/repos/gentoo/profiles/license_groups").unwrap().lines() {
-        if line.starts_with("FREE ") {
-            licences += line;
-            println!("{}", licences)
-        }
-    }
+    let licences = licence_walk("@FREE", read_to_string("/var/db/repos/gentoo/profiles/license_groups").unwrap().lines(), vec![]);
     //read profile data
     let mut a = "".to_string();
     let mut b = "".to_string();
