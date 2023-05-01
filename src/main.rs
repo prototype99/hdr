@@ -86,7 +86,7 @@ fn update() {
     let mut d: String = "".to_string();
     let mut e: String = "".to_string();
     let mut f: String = "".to_string();
-    let mut use_expand: String = "".to_string();
+    let mut elibc: String = "".to_string();
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
