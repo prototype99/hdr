@@ -47,19 +47,18 @@ fn profile_walk(profile: PathBuf, mut profiles: Vec<Cow<str>>) -> Vec<Cow<str>> 
                     line_path = PathBuf::from(line_path.strip_prefix("../").expect("error calculating profile parent"));
                 }
                 p_local.push(line_path);
-                let p_string = p_local.display().to_string();
+                let mut p_string = p_local.display().to_string();
+                if p_string.chars().last().unwrap() != '/' {
+                    p_string += "/";
+                }
                 let mut dupe = false;
                 for p in profiles.clone() {
-                    if p == profile.to_string_lossy() {
+                    if p == p_string {
                         dupe = true;
                     }
                 }
                 if !dupe {
-                    if p_string.chars().last().unwrap() != '/' {
-                        profiles.push(Cow::from(p_string + "/"));
-                    } else {
-                        profiles.push(Cow::from(p_string));
-                    }
+                    profiles.push(Cow::from(p_string));
                 }
                 profiles = profile_walk(p_local, profiles);
             }
