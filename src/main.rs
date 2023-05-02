@@ -110,6 +110,9 @@ fn update() {
     let mut kernel = "".to_string();
     let mut userland = "".to_string();
     let mut input_devices = "".to_string();
+    let mut office_implementation = "".to_string();
+    let mut libreoffice_extensions = "".to_string();
+    let mut calligra_features = "".to_string();
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
@@ -137,6 +140,12 @@ fn update() {
                         userland += line
                     } else if line.starts_with("INPUT_DEVICES") {
                         input_devices += line
+                    } else if line.starts_with("OFFICE_IMPLEMENTATION") {
+                        office_implementation += line
+                    } else if line.starts_with("LIBREOFFICE_EXTENSIONS") {
+                        libreoffice_extensions += line
+                    } else if line.starts_with("CALLIGRA_FEATURES") {
+                        calligra_features += line
                     }
                 }
             }
