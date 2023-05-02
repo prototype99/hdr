@@ -107,7 +107,7 @@ fn update() {
     let mut e = "".to_string();
     let mut f = "".to_string();
     let mut use_flags = "".to_string();
-    let use_expands: Vec<&str> = vec!["ELIBC", "KERNEL", "USERLAND", "INPUT_DEVICES", "OFFICE_IMPLEMENTATION", "LIBREOFFICE_EXTENSIONS", "CALLIGRA_FEATURES"];
+    let use_expands: Vec<&str> = vec!["ELIBC", "KERNEL", "USERLAND", "INPUT_DEVICES", "OFFICE_IMPLEMENTATION", "LIBREOFFICE_EXTENSIONS", "CALLIGRA_FEATURES", "COLLECTD_PLUGINS", "GPSD_PROTOCOLS", "APACHE2_MODULES"];
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
