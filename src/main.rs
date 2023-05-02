@@ -127,6 +127,7 @@ fn update() {
         for path in read_dir(profile.to_string()).unwrap() {
             let path_real = path.unwrap().path();
             let path_str = path_real.to_string_lossy();
+            println!("{}", path_str);
             if path_str.contains("package.mask") {
                 a = a.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
