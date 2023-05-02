@@ -37,7 +37,6 @@ fn licence_walk(startpoint: &str, lines: Lines, mut licences: Vec<String>) -> Ve
         if line.starts_with(cleanpoint.as_str()) {
             let line_split: Vec<&str> = line.split_whitespace().collect();
             for split in line_split {
-                println!("{}", split);
                 if split.starts_with('@') {
                     licences = licence_walk(split, lines.clone(), licences);
                 } else {
