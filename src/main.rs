@@ -106,13 +106,8 @@ fn update() {
     let mut d = "".to_string();
     let mut e = "".to_string();
     let mut f = "".to_string();
-    let mut elibc = "".to_string();
-    let mut kernel = "".to_string();
-    let mut userland = "".to_string();
-    let mut input_devices = "".to_string();
-    let mut office_implementation = "".to_string();
-    let mut libreoffice_extensions = "".to_string();
-    let mut calligra_features = "".to_string();
+    let mut use_flags = "".to_string();
+    let use_expands: Vec<&str> = vec!["ELIBC", "KERNEL", "USERLAND", "INPUT_DEVICES", "OFFICE_IMPLEMENTATION", "LIBREOFFICE_EXTENSIONS", "CALLIGRA_FEATURES"];
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
@@ -132,20 +127,10 @@ fn update() {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/make.defaults") {
                 for line in read_to_string(path_real).unwrap().lines() {
-                    if line.starts_with("ELIBC") {
-                        elibc += line
-                    } else if line.starts_with("KERNEL") {
-                        kernel += line
-                    } else if line.starts_with("USERLAND") {
-                        userland += line
-                    } else if line.starts_with("INPUT_DEVICES") {
-                        input_devices += line
-                    } else if line.starts_with("OFFICE_IMPLEMENTATION") {
-                        office_implementation += line
-                    } else if line.starts_with("LIBREOFFICE_EXTENSIONS") {
-                        libreoffice_extensions += line
-                    } else if line.starts_with("CALLIGRA_FEATURES") {
-                        calligra_features += line
+                    for use_expand in use_expands.clone() {
+                        if line.starts_with(use_expand) {
+                            use_flags += line;
+                        }
                     }
                 }
             }
