@@ -139,7 +139,7 @@ fn update() {
                 e = e.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_real.ends_with("/make.defaults") {
+            } else if path_str.ends_with("/make.defaults") {
                 println!("gamer time");
                 for line in read_to_string(path_real).unwrap().lines() {
                     for use_expand in use_expands.clone() {
