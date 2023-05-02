@@ -117,7 +117,10 @@ fn update() {
         "CALLIGRA_FEATURES",
         "COLLECTD_PLUGINS",
         "GPSD_PROTOCOLS",
-        "APACHE2_MODULES"
+        "APACHE2_MODULES",
+        "XTABLES_ADDONS",
+        "LCD_DEVICES",
+        "RUBY_TARGETS"
     ];
     for profile in profiles {
         println!("{}", profile);
