@@ -127,7 +127,6 @@ fn update() {
         for path in read_dir(profile.to_string()).unwrap() {
             let path_real = path.unwrap().path();
             let path_str = path_real.to_string_lossy();
-            println!("{}", path_str);
             if path_str.contains("package.mask") {
                 a = a.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
@@ -141,6 +140,7 @@ fn update() {
             } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_real.ends_with("/make.defaults") {
+                println!("gamer time");
                 for line in read_to_string(path_real).unwrap().lines() {
                     for use_expand in use_expands.clone() {
                         if line.starts_with(use_expand) {
