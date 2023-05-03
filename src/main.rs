@@ -129,18 +129,17 @@ fn update() {
             let path_str = path_real.to_string_lossy();
             if path_str.contains("package.mask") {
                 a = a.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_real.ends_with("/package.use") || path_real.ends_with("/package.use.force") {
+            } else if path_str.ends_with("/package.use") || path_str.ends_with("/package.use.force") {
                 b = b.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.contains("packages") {
                 c = c.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_real.ends_with("/use.mask") || path_real.ends_with("/use.stable.mask") {
+            } else if path_str.ends_with("/use.mask") || path_str.ends_with("/use.stable.mask") {
                 d = d.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_real.ends_with("/package.use.mask") || path_real.ends_with("/package.use.stable.mask") {
+            } else if path_str.ends_with("/package.use.mask") || path_str.ends_with("/package.use.stable.mask") {
                 e = e.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_real.ends_with("/use.force") || path_real.ends_with("/use.stable.force") {
+            } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.ends_with("/make.defaults") {
-                println!("gamer time");
                 for line in read_to_string(path_real).unwrap().lines() {
                     for use_expand in use_expands.clone() {
                         if line.starts_with(use_expand) {
