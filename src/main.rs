@@ -143,8 +143,8 @@ fn update() {
                 for line in read_to_string(path_real).unwrap().lines() {
                     for use_expand in use_expands.clone() {
                         if line.starts_with(use_expand) {
-                            println!("{}", line.get(use_expand.len()..line.len()-1).unwrap());
-                            use_flags += line.get(use_expand.len()..line.len()-1).unwrap();
+                            println!("{}", line.get(use_expand.len()+2..line.len()-1).unwrap());
+                            use_flags += line.get(use_expand.len()+2..line.len()-1).unwrap();
                         }
                     }
                 }
