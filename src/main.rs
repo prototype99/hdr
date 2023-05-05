@@ -143,8 +143,8 @@ fn update() {
             } else if path_str.ends_with("/make.defaults") {
                 let file = File::open(path_real).unwrap();
                 for line in BufReader::new(file).lines() {
+                    let unline = line.unwrap();
                     for use_expand in use_expands.clone() {
-                        let unline = line.unwrap();
                         if unline.starts_with(use_expand) {
                             let flag_split: Vec<&str> = unline.get(use_expand.len()+2..unline.len()-1).unwrap().split_whitespace().collect();
                             for split in flag_split {
