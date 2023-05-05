@@ -144,10 +144,11 @@ fn update() {
                 let file = File::open(path_real).unwrap();
                 for line in BufReader::new(file).lines() {
                     let unline = line.unwrap();
+                    let unline_str = unline.as_str();
                     let unline_end = unline.len()-1;
                     for use_expand in use_expands.clone() {
                         if unline.starts_with(use_expand) {
-                            for split in unline.get(use_expand.len()+2..unline_end).unwrap().split_whitespace().collect::<Vec<&str>>() {
+                            for split in unline_str.clone().get(use_expand.len()+2..unline_end).unwrap().split_whitespace().collect::<Vec<&str>>() {
                                 use_flags.push(split);
                             }
                         }
