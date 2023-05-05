@@ -140,7 +140,8 @@ fn update() {
             } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.ends_with("/make.defaults") {
-                for line in read_to_string(path_real).unwrap().lines() {
+                let useme = read_to_string( path_real ).unwrap();
+                for line in useme.lines() {
                     for use_expand in use_expands.clone() {
                         if line.starts_with(use_expand) {
                             let flag_split: Vec<&str> = line.get(use_expand.len()+2..line.len()-1).unwrap().split_whitespace().collect();
