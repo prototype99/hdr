@@ -107,7 +107,7 @@ fn update() {
     let mut d = "".to_string();
     let mut e = "".to_string();
     let mut f = "".to_string();
-    let mut use_flags = vec![];
+    let mut use_flags: Vec<&str> = vec![];
     let use_expands: Vec<&str> = vec![
         "ELIBC",
         "KERNEL",
@@ -147,8 +147,7 @@ fn update() {
                     let unline_end = unline.len()-1;
                     for use_expand in use_expands.clone() {
                         if unline.starts_with(use_expand) {
-                            let flag_split: Vec<&str> = unline.get(use_expand.len()+2..unline_end).unwrap().split_whitespace().collect();
-                            for split in flag_split {
+                            for split in unline.get(use_expand.len()+2..unline_end).unwrap().split_whitespace().collect::<Vec<&str>>() {
                                 use_flags.push(split);
                             }
                         }
