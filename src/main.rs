@@ -93,7 +93,7 @@ fn prompt(u: bool) {
     }
 }
 fn sliceanate(ue: String, ul: &str) -> Box<&str> {
-    return Box::new(&ul[ue.len() + 2..ue.len() - 1]);
+    return Box::new(&ul[ue.len() + 2..ul.len() - 1]);
 }
 fn update() {
     println!("updating system...");
