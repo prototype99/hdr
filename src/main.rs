@@ -141,8 +141,7 @@ fn update() {
             } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.ends_with("/make.defaults") {
-                let file = File::open(path_real).unwrap();
-                for line in BufReader::new(file).lines() {
+                for line in BufReader::new(File::open(path_real).unwrap()).lines() {
                     let unline = line.unwrap();
                     let unline_end = unline.len()-1;
                     for use_expand in use_expands.clone() {
