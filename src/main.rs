@@ -92,6 +92,38 @@ fn prompt(u: bool) {
         panic!("no commands specified{}", P)
     }
 }
+
+mod my_reader {
+    use std::{
+        fs::File,
+        io::{self, prelude::*},
+    };
+
+    pub struct BufReader {
+        reader: io::BufReader<File>,
+    }
+
+    impl BufReader {
+        pub fn open(path: impl AsRef<std::path::Path>) -> io::Result<Self> {
+            let file = File::open(path)?;
+            let reader = io::BufReader::new(file);
+
+            Ok(Self { reader })
+        }
+
+        pub fn read_line<'buf>(
+            &mut self,
+            buffer: &'buf mut String,
+        ) -> Option<io::Result<&'buf mut String>> {
+            buffer.clear();
+
+            self.reader
+                .read_line(buffer)
+                .map(|u| if u == 0 { None } else { Some(buffer) })
+                .transpose()
+        }
+    }
+}
 fn update() {
     println!("updating system...");
     //find the starting point for profile
@@ -141,6 +173,19 @@ fn update() {
             } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.ends_with("/make.defaults") {
+                let mut reader = my_reader::BufReader::open("Cargo.toml");
+                let mut buffer = String::new();
+                while let Some(line) = reader.as_mut().unwrap().read_line(&mut buffer) {
+                    let unline = line.unwrap();
+                    let unline_end = unline.len()-1;
+                    for use_expand in use_expands.clone() {
+                        if unline.starts_with(use_expand) {
+                            for split in unline[use_expand.len()+2..unline_end].split_whitespace().collect::<Vec<&str>>() {
+                                use_flags.push(split);
+                            }
+                        }
+                    }
+                }
                 for line in BufReader::new(File::open(path_real).unwrap()).lines() {
                     let unline = line.unwrap();
                     let unline_end = unline.len()-1;
