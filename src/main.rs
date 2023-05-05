@@ -92,6 +92,9 @@ fn prompt(u: bool) {
         panic!("no commands specified{}", P)
     }
 }
+fn sliceanate(ue: String, ul: &str) -> Box<&str> {
+    return Box::new(&ul[ue.len() + 2..ue.len() - 1]);
+}
 fn update() {
     println!("updating system...");
     //find the starting point for profile
@@ -144,10 +147,9 @@ fn update() {
                 let file = File::open(path_real).unwrap();
                 for line in BufReader::new(file).lines() {
                     let unline = line.unwrap();
-                    let unline_end = unline.len()-1;
                     for use_expand in use_expands.clone() {
                         if unline.starts_with(use_expand) {
-                            for split in unline[use_expand.len()+2..unline_end].split_whitespace().collect::<Vec<&str>>() {
+                            for split in sliceanate(unline.clone(), use_expand).split_whitespace().collect::<Vec<&str>>() {
                                 use_flags.push(split);
                             }
                         }
