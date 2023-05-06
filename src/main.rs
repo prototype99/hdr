@@ -143,10 +143,9 @@ fn update() {
             } else if path_str.ends_with("/make.defaults") {
                 for line in BufReader::new(File::open(path_real).unwrap()).lines() {
                     let unline = line.unwrap();
-                    let unline_end = unline.len()-1;
                     for use_expand in &use_expands {
                         if unline.starts_with(use_expand) {
-                            for split in unline[use_expand.len()+2..unline_end].split_whitespace() {
+                            for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
                                 use_flags.push(split.to_owned());
                             }
                         }
