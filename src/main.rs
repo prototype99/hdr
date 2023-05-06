@@ -155,6 +155,13 @@ fn update() {
                             }
                         }
                     }
+                    if line.starts_with("USE") {
+                        for split in line[5..line.len()-1].split_whitespace() {
+                            if split != "${USE}" {
+                                use_flags.push(split.to_string());
+                            }
+                        }
+                    }
                 }
             }
         }
