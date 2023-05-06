@@ -144,8 +144,8 @@ fn update() {
                     for use_expand in &use_expands {
                         if line.starts_with(use_expand) {
                             for split in line[use_expand.len()+2..line.len()-1].split_whitespace() {
-                                println!("{}", split.to_owned());
-                                use_flags.push(split.to_owned());
+                                println!("{}", use_expand.to_lowercase() + "_" + split);
+                                use_flags.push(use_expand.to_lowercase() + "_" + split);
                             }
                         }
                     }
