@@ -146,7 +146,7 @@ fn update() {
                     let unline_end = unline.len()-1;
                     for use_expand in use_expands.clone() {
                         if unline.starts_with(use_expand) {
-                            for split in unline[use_expand.len()+2..unline_end].split_whitespace().collect::<Vec<&str>>() {
+                            for split in unline[use_expand.len()+2..unline_end].split_whitespace() {
                                 use_flags.push(split);
                             }
                         }
