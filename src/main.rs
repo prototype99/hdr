@@ -108,6 +108,7 @@ fn update() {
     let mut f = "".to_string();
     let mut use_flags: Vec<String> = vec![];
     let use_expands: Vec<&str> = vec![
+        "ADA_TARGET",
         "APACHE2_MODULES",
         "CALLIGRA_FEATURES",
         "COLLECTD_PLUGINS",
@@ -117,7 +118,13 @@ fn update() {
         "KERNEL",
         "LCD_DEVICES",
         "LIBREOFFICE_EXTENSIONS",
+        "LUA_SINGLE_TARGET",
+        "LUA_TARGETS",
         "OFFICE_IMPLEMENTATION",
+        "PHP_TARGETS",
+        "POSTGRES_TARGETS",
+        "PYTHON_SINGLE_TARGET",
+        "PYTHON_TARGETS",
         "RUBY_TARGETS",
         "USERLAND",
         "XTABLES_ADDONS"
