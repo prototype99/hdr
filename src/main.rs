@@ -108,19 +108,19 @@ fn update() {
     let mut f = "".to_string();
     let mut use_flags: Vec<String> = vec![];
     let use_expands: Vec<&str> = vec![
-        "ELIBC",
-        "KERNEL",
-        "USERLAND",
-        "INPUT_DEVICES",
-        "OFFICE_IMPLEMENTATION",
-        "LIBREOFFICE_EXTENSIONS",
+        "APACHE2_MODULES",
         "CALLIGRA_FEATURES",
         "COLLECTD_PLUGINS",
+        "ELIBC",
         "GPSD_PROTOCOLS",
-        "APACHE2_MODULES",
-        "XTABLES_ADDONS",
+        "INPUT_DEVICES",
+        "KERNEL",
         "LCD_DEVICES",
-        "RUBY_TARGETS"
+        "LIBREOFFICE_EXTENSIONS",
+        "OFFICE_IMPLEMENTATION",
+        "RUBY_TARGETS",
+        "USERLAND",
+        "XTABLES_ADDONS"
     ];
     for profile in profiles {
         println!("{}", profile);
