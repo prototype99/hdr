@@ -1,7 +1,6 @@
 use std::borrow::Cow;
 use std::env::args;
-use std::fs::{File, read_dir, read_link, read_to_string};
-use std::io::{BufRead, BufReader};
+use std::fs::{read_dir, read_link, read_to_string};
 use std::path::PathBuf;
 use std::str::Lines;
 
@@ -141,11 +140,10 @@ fn update() {
             } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.ends_with("/make.defaults") {
-                for line in BufReader::new(File::open(path_real).unwrap()).lines() {
-                    let unline = line.unwrap();
+                for line in read_to_string(path_real).unwrap().lines() {
                     for use_expand in &use_expands {
-                        if unline.starts_with(use_expand) {
-                            for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
+                        if line.starts_with(use_expand) {
+                            for split in line[use_expand.len()+2..line.len()-1].split_whitespace() {
                                 use_flags.push(split.to_owned());
                             }
                         }
