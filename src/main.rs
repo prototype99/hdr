@@ -144,7 +144,7 @@ fn update() {
                 for line in BufReader::new(File::open(path_real).unwrap()).lines() {
                     let unline = line.unwrap();
                     let unline_end = unline.len()-1;
-                    for use_expand in use_expands.clone() {
+                    for use_expand in &use_expands {
                         if unline.starts_with(use_expand) {
                             for split in unline[use_expand.len()+2..unline_end].split_whitespace() {
                                 use_flags.push(split);
