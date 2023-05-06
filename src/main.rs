@@ -40,7 +40,7 @@ fn licence_walk(startpoint: &str, lines: Lines, mut licences: Vec<String>) -> Ve
                 if split.starts_with('@') {
                     licences = licence_walk(split, lines.clone(), licences);
                 } else {
-                    licences.push(split.parse().unwrap());
+                    licences.push(split.to_string());
                 }
             }
         }
