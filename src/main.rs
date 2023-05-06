@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 use std::env::args;
-use std::fs::{read_dir, read_link, read_to_string};
+use std::fs::{File, read_dir, read_link, read_to_string};
+use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
 use std::str::Lines;
 
@@ -106,29 +107,25 @@ fn update() {
     let mut d = "".to_string();
     let mut e = "".to_string();
     let mut f = "".to_string();
+    let mut use_expands: Vec<String> = vec![];
     let mut use_flags: Vec<String> = vec![];
-    let use_expands: Vec<&str> = vec![
-        "ADA_TARGET",
-        "APACHE2_MODULES",
-        "CALLIGRA_FEATURES",
-        "COLLECTD_PLUGINS",
-        "ELIBC",
-        "GPSD_PROTOCOLS",
-        "INPUT_DEVICES",
-        "KERNEL",
-        "LCD_DEVICES",
-        "LIBREOFFICE_EXTENSIONS",
-        "LUA_SINGLE_TARGET",
-        "LUA_TARGETS",
-        "OFFICE_IMPLEMENTATION",
-        "PHP_TARGETS",
-        "POSTGRES_TARGETS",
-        "PYTHON_SINGLE_TARGET",
-        "PYTHON_TARGETS",
-        "RUBY_TARGETS",
-        "USERLAND",
-        "XTABLES_ADDONS"
-    ];
+    for profile in profiles.clone() {
+        for path in read_dir(profile.to_string()).unwrap() {
+            let path_real = path.unwrap().path();
+            let path_str = path_real.to_string_lossy();
+            if path_str.ends_with("/make.defaults") {
+                let lines = BufReader::new(File::open(path_real).unwrap()).lines();
+                for line in lines {
+                    let unline = line.unwrap();
+                    if unline.starts_with("USE_EXPAND=\"") {
+                        for split in unline[12..unline.len()-1].split_whitespace() {
+                            use_expands.push(split.to_string());
+                        }
+                    }
+                }
+            }
+        }
+    }
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
@@ -147,16 +144,18 @@ fn update() {
             } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
                 f = f.clone() + &*read_to_string(path_real).unwrap();
             } else if path_str.ends_with("/make.defaults") {
-                for line in read_to_string(path_real).unwrap().lines() {
+                let lines = BufReader::new(File::open(path_real).unwrap()).lines();
+                for line in lines {
+                    let unline = line.unwrap();
                     for use_expand in &use_expands {
-                        if line.starts_with(use_expand) {
-                            for split in line[use_expand.len()+2..line.len()-1].split_whitespace() {
+                        if unline.starts_with(use_expand) {
+                            for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
                                 use_flags.push(use_expand.to_lowercase() + "_" + split);
                             }
                         }
                     }
-                    if line.starts_with("USE") {
-                        for split in line[5..line.len()-1].split_whitespace() {
+                    if unline.starts_with("USE") {
+                        for split in unline[5..unline.len()-1].split_whitespace() {
                             if split != "${USE}" {
                                 use_flags.push(split.to_string());
                             }
