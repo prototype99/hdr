@@ -102,6 +102,7 @@ fn update() {
     let licences = licence_walk("@FREE", read_to_string("/var/db/repos/gentoo/profiles/license_groups").unwrap().lines(), vec![]);
     //read profile data
     let mut a = "".to_string();
+    let mut arch = "".to_string();
     let mut b = "".to_string();
     let mut c = "".to_string();
     let mut d = "".to_string();
@@ -158,6 +159,8 @@ fn update() {
                         use_flags.push(split.to_string());
                     }
                 }
+            } else if unline.starts_with("ARCH") {
+                arch = unline[6..unline.len() - 1].to_string();
             }
         }
     }
