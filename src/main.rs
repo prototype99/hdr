@@ -110,7 +110,7 @@ fn update() {
     let mut file_paths: Vec<PathBuf> = vec![];
     let mut use_expands: Vec<String> = vec![];
     let mut use_flags: Vec<String> = vec![];
-    let mut world = "".to_string();
+    let mut world: Vec<String> = vec![];
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
@@ -121,9 +121,12 @@ fn update() {
             } else if path_str.ends_with("/package.use") || path_str.ends_with("/package.use.force") {
                 b = b.clone() + &*read_to_string(path_real.clone()).unwrap();
             } else if path_str.contains("packages") {
-                for line in read_to_string(path_real.clone()).unwrap().lines() {
+                for mut line in read_to_string(path_real.clone()).unwrap().lines() {
                     if !line.starts_with("#") {
-                        world = world.clone() + line + " ";
+                        if line.starts_with("*") {
+                            line = line.strip_prefix("*").unwrap();
+                        }
+                        world.push(line.to_string());
                     }
                 }
             } else if path_str.ends_with("/use.mask") || path_str.ends_with("/use.stable.mask") {
@@ -168,5 +171,7 @@ fn update() {
             }
         }
     }
-    println!("{}", world);
+    for package in world {
+        println!("{}", package)
+    }
 }
