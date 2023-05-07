@@ -126,7 +126,16 @@ fn update() {
                         if line.starts_with("*") {
                             line = line.strip_prefix("*").unwrap();
                         }
-                        world.push(line.to_string());
+                        let mut dupe = false;
+                        let line_str = line.to_string();
+                        for p in world.clone() {
+                            if p == line_str {
+                                dupe = true;
+                            }
+                        }
+                        if !dupe {
+                            world.push(line_str);
+                        }
                     }
                 }
             } else if path_str.ends_with("/use.mask") || path_str.ends_with("/use.stable.mask") {
