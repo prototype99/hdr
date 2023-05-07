@@ -143,27 +143,25 @@ fn update() {
                         }
                     }
                 }
+                path_pairs.push(PathPair{ path_real: path_real.clone(), path_str: path_real.to_string_lossy().to_string() })
             }
-            path_pairs.push(PathPair{ path_real: path_real.clone(), path_str: path_real.to_string_lossy().to_string() })
         }
     }
     for path_pair in path_pairs {
-        if path_pair.path_str.ends_with("/make.defaults") {
-            let lines = BufReader::new(File::open(path_pair.path_real).unwrap()).lines();
-            for line in lines {
-                let unline = line.unwrap();
-                for use_expand in &use_expands {
-                    if unline.starts_with(use_expand) {
-                        for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
-                            use_flags.push(use_expand.to_lowercase() + "_" + split);
-                        }
+        let lines = BufReader::new(File::open(path_pair.path_real).unwrap()).lines();
+        for line in lines {
+            let unline = line.unwrap();
+            for use_expand in &use_expands {
+                if unline.starts_with(use_expand) {
+                    for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
+                        use_flags.push(use_expand.to_lowercase() + "_" + split);
                     }
                 }
-                if unline.starts_with("USE") {
-                    for split in unline[5..unline.len()-1].split_whitespace() {
-                        if split != "${USE}" {
-                            use_flags.push(split.to_string());
-                        }
+            }
+            if unline.starts_with("USE") {
+                for split in unline[5..unline.len()-1].split_whitespace() {
+                    if split != "${USE}" {
+                        use_flags.push(split.to_string());
                     }
                 }
             }
