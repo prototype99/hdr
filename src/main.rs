@@ -5,6 +5,12 @@ use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
 use std::str::Lines;
 
+#[derive(Clone)]
+struct PathPair {
+    path_real: PathBuf,
+    path_str: String
+}
+
 fn main() {
     //collect arguments
     let args: Vec<String> = args().collect();
@@ -107,58 +113,57 @@ fn update() {
     let mut d = "".to_string();
     let mut e = "".to_string();
     let mut f = "".to_string();
+    let mut path_pairs: Vec<PathPair> = vec![];
     let mut use_expands: Vec<String> = vec![];
     let mut use_flags: Vec<String> = vec![];
-    for profile in profiles.clone() {
+    for profile in profiles {
+        println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
             let path_real = path.unwrap().path();
-            let path_str = path_real.to_string_lossy();
-            if path_str.ends_with("/make.defaults") {
-                let lines = BufReader::new(File::open(path_real).unwrap()).lines();
-                for line in lines {
-                    let unline = line.unwrap();
-                    if unline.starts_with("USE_EXPAND=\"") {
-                        for split in unline[12..unline.len()-1].split_whitespace() {
-                            use_expands.push(split.to_string());
-                        }
+            path_pairs.push(PathPair{ path_real: path_real.clone(), path_str: path_real.to_string_lossy().to_string() })
+        }
+    }
+    for path_pair in path_pairs.clone() {
+        if path_pair.path_str.ends_with("/make.defaults") {
+            let lines = BufReader::new(File::open(path_pair.path_real).unwrap()).lines();
+            for line in lines {
+                let unline = line.unwrap();
+                if unline.starts_with("USE_EXPAND=\"") {
+                    for split in unline[12..unline.len()-1].split_whitespace() {
+                        use_expands.push(split.to_string());
                     }
                 }
             }
         }
     }
-    for profile in profiles {
-        println!("{}", profile);
-        for path in read_dir(profile.to_string()).unwrap() {
-            let path_real = path.unwrap().path();
-            let path_str = path_real.to_string_lossy();
-            if path_str.contains("package.mask") {
-                a = a.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_str.ends_with("/package.use") || path_str.ends_with("/package.use.force") {
-                b = b.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_str.contains("packages") {
-                c = c.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_str.ends_with("/use.mask") || path_str.ends_with("/use.stable.mask") {
-                d = d.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_str.ends_with("/package.use.mask") || path_str.ends_with("/package.use.stable.mask") {
-                e = e.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_str.ends_with("/use.force") || path_str.ends_with("/use.stable.force") {
-                f = f.clone() + &*read_to_string(path_real).unwrap();
-            } else if path_str.ends_with("/make.defaults") {
-                let lines = BufReader::new(File::open(path_real).unwrap()).lines();
-                for line in lines {
-                    let unline = line.unwrap();
-                    for use_expand in &use_expands {
-                        if unline.starts_with(use_expand) {
-                            for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
-                                use_flags.push(use_expand.to_lowercase() + "_" + split);
-                            }
+    for path_pair in path_pairs {
+        if path_pair.path_str.contains("package.mask") {
+            a = a.clone() + &*read_to_string(path_pair.path_real).unwrap();
+        } else if path_pair.path_str.ends_with("/package.use") || path_pair.path_str.ends_with("/package.use.force") {
+            b = b.clone() + &*read_to_string(path_pair.path_real).unwrap();
+        } else if path_pair.path_str.contains("packages") {
+            c = c.clone() + &*read_to_string(path_pair.path_real).unwrap();
+        } else if path_pair.path_str.ends_with("/use.mask") || path_pair.path_str.ends_with("/use.stable.mask") {
+            d = d.clone() + &*read_to_string(path_pair.path_real).unwrap();
+        } else if path_pair.path_str.ends_with("/package.use.mask") || path_pair.path_str.ends_with("/package.use.stable.mask") {
+            e = e.clone() + &*read_to_string(path_pair.path_real).unwrap();
+        } else if path_pair.path_str.ends_with("/use.force") || path_pair.path_str.ends_with("/use.stable.force") {
+            f = f.clone() + &*read_to_string(path_pair.path_real).unwrap();
+        } else if path_pair.path_str.ends_with("/make.defaults") {
+            let lines = BufReader::new(File::open(path_pair.path_real).unwrap()).lines();
+            for line in lines {
+                let unline = line.unwrap();
+                for use_expand in &use_expands {
+                    if unline.starts_with(use_expand) {
+                        for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
+                            use_flags.push(use_expand.to_lowercase() + "_" + split);
                         }
                     }
-                    if unline.starts_with("USE") {
-                        for split in unline[5..unline.len()-1].split_whitespace() {
-                            if split != "${USE}" {
-                                use_flags.push(split.to_string());
-                            }
+                }
+                if unline.starts_with("USE") {
+                    for split in unline[5..unline.len()-1].split_whitespace() {
+                        if split != "${USE}" {
+                            use_flags.push(split.to_string());
                         }
                     }
                 }
