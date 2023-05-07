@@ -122,7 +122,7 @@ fn update() {
                 b = b.clone() + &*read_to_string(path_real.clone()).unwrap();
             } else if path_str.contains("packages") {
                 for mut line in read_to_string(path_real.clone()).unwrap().lines() {
-                    if !line.starts_with("#") {
+                    if !line.starts_with("#") && !line.is_empty() {
                         if line.starts_with("*") {
                             line = line.strip_prefix("*").unwrap();
                         }
