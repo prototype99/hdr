@@ -123,7 +123,7 @@ fn update() {
             } else if path_str.contains("packages") {
                 for line in read_to_string(path_real.clone()).unwrap().lines() {
                     if !line.starts_with("#") {
-                        world = world.clone() + line;
+                        world = world.clone() + line + " ";
                     }
                 }
             } else if path_str.ends_with("/use.mask") || path_str.ends_with("/use.stable.mask") {
