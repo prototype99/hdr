@@ -164,4 +164,5 @@ fn update() {
             }
         }
     }
+    println!("{}", c);
 }
