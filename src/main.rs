@@ -172,6 +172,6 @@ fn update() {
         }
     }
     for package in world {
-        println!("{}", package)
+        println!("{}", "<".to_string() + &*package + ">")
     }
 }
