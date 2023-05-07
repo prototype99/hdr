@@ -8,7 +8,7 @@ use std::str::Lines;
 #[derive(Clone)]
 struct Atom<'a> {
     modifier: &'a str,
-    package: &'a str,
+    package: String,
     version: &'a str
 }
 
@@ -141,7 +141,7 @@ fn update() {
                             }
                         }
                         if !dupe {
-                            world.push(Atom{modifier: "", package: "line_str", version: "" });
+                            world.push(Atom{modifier: "", package: line_str, version: "" });
                         }
                     }
                 }
