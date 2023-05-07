@@ -5,12 +5,6 @@ use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
 use std::str::Lines;
 
-#[derive(Clone)]
-struct PathPair {
-    path_real: PathBuf,
-    path_str: String
-}
-
 fn main() {
     //collect arguments
     let args: Vec<String> = args().collect();
@@ -113,7 +107,7 @@ fn update() {
     let mut d = "".to_string();
     let mut e = "".to_string();
     let mut f = "".to_string();
-    let mut path_pairs: Vec<PathPair> = vec![];
+    let mut file_paths: Vec<PathBuf> = vec![];
     let mut use_expands: Vec<String> = vec![];
     let mut use_flags: Vec<String> = vec![];
     for profile in profiles {
@@ -143,12 +137,12 @@ fn update() {
                         }
                     }
                 }
-                path_pairs.push(PathPair{ path_real: path_real.clone(), path_str: path_real.to_string_lossy().to_string() })
+                file_paths.push(path_real);
             }
         }
     }
-    for path_pair in path_pairs {
-        let lines = BufReader::new(File::open(path_pair.path_real).unwrap()).lines();
+    for file_path in file_paths {
+        let lines = BufReader::new(File::open(file_path).unwrap()).lines();
         for line in lines {
             let unline = line.unwrap();
             for use_expand in &use_expands {
