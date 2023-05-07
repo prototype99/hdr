@@ -5,6 +5,13 @@ use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
 use std::str::Lines;
 
+#[derive(Clone)]
+struct Atom<'a> {
+    modifier: &'a str,
+    package: &'a str,
+    version: &'a str
+}
+
 fn main() {
     //collect arguments
     let args: Vec<String> = args().collect();
@@ -110,7 +117,7 @@ fn update() {
     let mut file_paths: Vec<PathBuf> = vec![];
     let mut use_expands: Vec<String> = vec![];
     let mut use_flags: Vec<String> = vec![];
-    let mut world: Vec<String> = vec![];
+    let mut world: Vec<Atom> = vec![];
     for profile in profiles {
         println!("{}", profile);
         for path in read_dir(profile.to_string()).unwrap() {
@@ -129,12 +136,12 @@ fn update() {
                         let mut dupe = false;
                         let line_str = line.to_string();
                         for p in world.clone() {
-                            if p == line_str {
+                            if p.package == line_str {
                                 dupe = true;
                             }
                         }
                         if !dupe {
-                            world.push(line_str);
+                            world.push(Atom{modifier: "", package: "line_str", version: "" });
                         }
                     }
                 }
@@ -181,6 +188,6 @@ fn update() {
         }
     }
     for package in world {
-        println!("{}", package)
+        println!("{}", package.package)
     }
 }
