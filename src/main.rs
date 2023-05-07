@@ -121,7 +121,11 @@ fn update() {
             } else if path_str.ends_with("/package.use") || path_str.ends_with("/package.use.force") {
                 b = b.clone() + &*read_to_string(path_real.clone()).unwrap();
             } else if path_str.contains("packages") {
-                world = world.clone() + &*read_to_string(path_real.clone()).unwrap();
+                for line in read_to_string(path_real.clone()).unwrap().lines() {
+                    if !line.starts_with("#") {
+                        world = world.clone() + line;
+                    }
+                }
             } else if path_str.ends_with("/use.mask") || path_str.ends_with("/use.stable.mask") {
                 d = d.clone() + &*read_to_string(path_real.clone()).unwrap();
             } else if path_str.ends_with("/package.use.mask") || path_str.ends_with("/package.use.stable.mask") {
