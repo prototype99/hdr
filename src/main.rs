@@ -209,6 +209,6 @@ fn update() {
         .arg("qlist -IUv")
         .output()
         .expect("failed to get installed packages");
-    let profile = String::from_utf8_lossy(&profile_cmd.stdout).trim().to_string();
+    let profile = String::from_utf8_lossy(&profile_cmd.stdout);
     println!("{}", profile)
 }
