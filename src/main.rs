@@ -140,7 +140,7 @@ fn update() {
                         if line.starts_with(">=") {
                             modifier = ">=";
                             version = line.split("-").last().unwrap();
-                            line = &line[2..line.len()-(version.len() + 1)];
+                            line = &line[2..line.len() - (version.len() + 1)];
                             for mut p in world.clone() {
                                 if p.package == line {
                                     if p.version.is_empty() {
@@ -158,7 +158,7 @@ fn update() {
                             }
                         }
                         if !dupe {
-                            world.push(Atom{modifier, package: line_str, version: version.to_string() });
+                            world.push(Atom { modifier, package: line_str, version: version.to_string() });
                         }
                     }
                 }
@@ -173,7 +173,7 @@ fn update() {
                 for line in lines {
                     let unline = line.unwrap();
                     if unline.starts_with("USE_EXPAND=\"") {
-                        for split in unline[12..unline.len()-1].split_whitespace() {
+                        for split in unline[12..unline.len() - 1].split_whitespace() {
                             use_expands.push(split.to_string());
                         }
                     }
@@ -188,13 +188,13 @@ fn update() {
             let unline = line.unwrap();
             for use_expand in &use_expands {
                 if unline.starts_with(use_expand) {
-                    for split in unline[use_expand.len()+2..unline.len()-1].split_whitespace() {
+                    for split in unline[use_expand.len() + 2..unline.len() - 1].split_whitespace() {
                         use_flags.push(use_expand.to_lowercase() + "_" + split);
                     }
                 }
             }
             if unline.starts_with("USE") {
-                for split in unline[5..unline.len()-1].split_whitespace() {
+                for split in unline[5..unline.len() - 1].split_whitespace() {
                     if split != "${USE}" {
                         use_flags.push(split.to_string());
                     }
