@@ -3,6 +3,7 @@ use std::env::args;
 use std::fs::{File, read_dir, read_link, read_to_string};
 use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
+use std::process::Command;
 use std::str::Lines;
 
 #[derive(Clone)]
@@ -203,7 +204,11 @@ fn update() {
             }
         }
     }
-    for package in world {
-        println!("{}{}{}", package.package, "-", package.version);
-    }
+    let profile_cmd = Command::new("sh")
+        .arg("-c")
+        .arg("qlist -IUv")
+        .output()
+        .expect("failed to get installed packages");
+    let profile = String::from_utf8_lossy(&profile_cmd.stdout).trim().to_string();
+    println!("{}", profile)
 }
