@@ -135,12 +135,21 @@ fn update() {
                         }
                         let mut modifier = "";
                         let mut version = "";
+                        let mut dupe = false;
                         if line.starts_with(">=") {
                             modifier = ">=";
                             version = line.split("-").last().unwrap();
                             line = &line[2..line.len()-(version.len() + 1)];
+                            for mut p in world.clone() {
+                                if p.package == line {
+                                    if p.version.is_empty() {
+                                        p.version = version.to_string()
+                                    } else if p.version >= version.to_string() {
+                                        dupe = true
+                                    }
+                                }
+                            }
                         }
-                        let mut dupe = false;
                         let line_str = line.to_string();
                         for p in world.clone() {
                             if p.package == line_str {
