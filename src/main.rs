@@ -204,11 +204,21 @@ fn update() {
             }
         }
     }
+    let mut installed: Vec<Atom> = vec![];
     let profile_cmd = Command::new("sh")
         .arg("-c")
         .arg("qlist -IUv")
         .output()
         .expect("failed to get installed packages");
-    let profile = String::from_utf8_lossy(&profile_cmd.stdout);
-    println!("{}", profile)
+    for line in String::from_utf8_lossy(&profile_cmd.stdout).lines() {
+        let crumb = line.split("-").last().unwrap();
+        let version: String;
+        if crumb.starts_with("r") {
+            let revision = crumb;
+            version = line[..line.len() - (revision.len()+1)].split("-").last().unwrap().to_string() + "-" + revision;
+        } else {
+            version = crumb.to_string();
+        }
+        installed.push(Atom { modifier: "", package: line[..line.len() - (version.len() + 1)].to_string(), version });
+    }
 }
