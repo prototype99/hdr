@@ -205,6 +205,7 @@ fn update() {
         }
     }
     let mut installed: Vec<Atom> = vec![];
+    //get list of installed packages, could be made native by emulating ls /var/db/pkg/*
     let profile_cmd = Command::new("sh")
         .arg("-c")
         .arg("qlist -IUv")
