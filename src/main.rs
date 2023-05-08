@@ -9,7 +9,7 @@ use std::str::Lines;
 struct Atom<'a> {
     modifier: &'a str,
     package: String,
-    version: &'a str
+    version: String
 }
 
 fn main() {
@@ -133,6 +133,13 @@ fn update() {
                         if line.starts_with("*") {
                             line = line.strip_prefix("*").unwrap();
                         }
+                        let mut modifier = "";
+                        let mut version = "";
+                        if line.starts_with(">=") {
+                            modifier = ">=";
+                            version = line.split("-").last().unwrap();
+                            line = &line[2..version.len() + 1];
+                        }
                         let mut dupe = false;
                         let line_str = line.to_string();
                         for p in world.clone() {
@@ -141,7 +148,7 @@ fn update() {
                             }
                         }
                         if !dupe {
-                            world.push(Atom{modifier: "", package: line_str, version: "" });
+                            world.push(Atom{modifier, package: line_str, version: version.to_string() });
                         }
                     }
                 }
@@ -188,6 +195,6 @@ fn update() {
         }
     }
     for package in world {
-        println!("{}", package.package)
+        println!("{}{}{}", package.package, "-", package.version);
     }
 }
