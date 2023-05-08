@@ -138,7 +138,7 @@ fn update() {
                         if line.starts_with(">=") {
                             modifier = ">=";
                             version = line.split("-").last().unwrap();
-                            line = &line[2..version.len() + 1];
+                            line = &line[2..line.len()-(version.len() + 1)];
                         }
                         let mut dupe = false;
                         let line_str = line.to_string();
