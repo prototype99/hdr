@@ -10,7 +10,8 @@ use std::str::Lines;
 struct Atom<'a> {
     modifier: &'a str,
     package: String,
-    version: String
+    version: String,
+    slot: String
 }
 
 fn main() {
@@ -151,14 +152,15 @@ fn update() {
                                 }
                             }
                         }
-                        let line_str = line.to_string();
+                        let slot = line.split(":").last().unwrap();
+                        let line_str = line[..line.len()-slot.len()].to_string();
                         for p in world.clone() {
                             if p.package == line_str {
                                 dupe = true;
                             }
                         }
                         if !dupe {
-                            world.push(Atom { modifier, package: line_str, version: version.to_string() });
+                            world.push(Atom { modifier, package: line_str, version: version.to_string(), slot: slot.to_string()});
                         }
                     }
                 }
@@ -221,7 +223,7 @@ fn update() {
         } else {
             version = crumb.to_string();
         }
-        installed.push(Atom { modifier: "", package: line[..line.len() - (version.len() + 1)].to_string(), version });
+        installed.push(Atom { modifier: "", package: line[..line.len() - (version.len() + 1)].to_string(), version, slot: "".to_string() });
     }
     //check if world is installed
     for package in world {
