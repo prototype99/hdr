@@ -212,7 +212,7 @@ fn update() {
         .output()
         .expect("failed to get installed packages");
     for line in String::from_utf8_lossy(&profile_cmd.stdout).lines() {
-        let crumb = line.split("-").last().unwrap();
+        let crumb = line.split_whitespace().next().unwrap().split("-").last().unwrap();
         let version: String;
         if crumb.starts_with("r") {
             let revision = crumb;
