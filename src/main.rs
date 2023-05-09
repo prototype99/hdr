@@ -230,10 +230,9 @@ fn update() {
             if package.package == install.package {
                 dupe = true
             }
-            println!("{}", install.package)
         }
         if !dupe {
-            println!("{}{}", "#", package.package)
+            println!("{}", package.package)
         }
     }
 }
