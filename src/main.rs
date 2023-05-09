@@ -153,7 +153,10 @@ fn update() {
                             }
                         }
                         let slot = line.split(":").last().unwrap();
-                        let line_str = line[..line.len()-slot.len()].to_string();
+                        let mut line_str = line.to_string();
+                        if line.contains(":") {
+                            line_str = line[..line.len()-slot.len()+1].to_string();
+                        }
                         for p in world.clone() {
                             if p.package == line_str {
                                 dupe = true;
