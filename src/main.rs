@@ -222,4 +222,16 @@ fn update() {
         }
         installed.push(Atom { modifier: "", package: line[..line.len() - (version.len() + 1)].to_string(), version });
     }
+    //check if world is installed
+    for package in world {
+        let mut dupe = false;
+        for install in installed.clone() {
+            if package.package == install.package {
+                dupe = true
+            }
+        }
+        if !dupe {
+            println!("{}", package.package)
+        }
+    }
 }
