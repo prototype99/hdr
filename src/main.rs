@@ -229,6 +229,8 @@ fn update() {
         }
         installed.push(Atom { modifier: "", package: line[..line.len() - (version.len() + 1)].to_string(), version, slot: "".to_string() });
     }
+    println!("packages to be installed:");
+    let mut empty = true;
     //check if world is installed
     for package in world {
         let mut dupe = false;
@@ -238,7 +240,11 @@ fn update() {
             }
         }
         if !dupe {
+            empty = false;
             println!("{}", package.package)
         }
+    }
+    if empty {
+        println!("nothing to install")
     }
 }
