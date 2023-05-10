@@ -156,7 +156,7 @@ fn update() {
                         let mut slot = "";
                         if line.contains(":") {
                             slot = line.split(":").last().unwrap();
-                            line_str = line[..line.len()-slot.len()+1].to_string();
+                            line_str = line.strip_suffix((":".to_string() + slot).as_str()).unwrap().to_string();
                         }
                         for p in world.clone() {
                             if p.package == line_str {
