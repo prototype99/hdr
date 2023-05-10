@@ -217,6 +217,7 @@ fn update() {
         .arg("qlist -IUv")
         .output()
         .expect("failed to get installed packages");
+    println!("packages to be installed:");
     for mut line in String::from_utf8_lossy(&profile_cmd.stdout).lines() {
         line = line.split_whitespace().next().unwrap();
         let crumb = line.split("-").last().unwrap();
@@ -227,21 +228,22 @@ fn update() {
         } else {
             version = crumb.to_string();
         }
+        let mut newversion = "".to_string();
         let package = line[..line.len() - (version.len() + 1)].to_string();
         let pkgdir = "/var/db/repos/gentoo/".to_string() + &*package;
         for path in read_dir(pkgdir.clone()).unwrap() {
             let path_real = path.unwrap().path();
             if path_real.ends_with("ebuild") {
                 let pathstr = path_real.to_string_lossy();
-                let newversion = &pathstr[pkgdir.len() + 1 + package.split("/").last().unwrap().len()..pathstr.len() - 7];
-                if newversion > &version {
-                    version = newversion.to_string();
+                let posversion = &pathstr[pkgdir.len() + 1 + package.split("/").last().unwrap().len()..pathstr.len() - 7];
+                if posversion > &version {
+                    newversion = posversion.to_string();
                 }
             }
         }
+        println!("{}{}{}", package, "-", newversion);
         installed.push(Atom { modifier: "", package, version, slot: "".to_string() });
     }
-    println!("packages to be installed:");
     let mut empty = true;
     //check if world is installed
     for package in world {
