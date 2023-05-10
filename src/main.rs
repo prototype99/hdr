@@ -220,7 +220,7 @@ fn update() {
     for mut line in String::from_utf8_lossy(&profile_cmd.stdout).lines() {
         line = line.split_whitespace().next().unwrap();
         let crumb = line.split("-").last().unwrap();
-        let version: String;
+        let mut version: String;
         if crumb.starts_with("r") {
             let revision = crumb;
             version = line[..line.len() - (revision.len()+1)].split("-").last().unwrap().to_string() + "-" + revision;
@@ -228,8 +228,16 @@ fn update() {
             version = crumb.to_string();
         }
         let package = line[..line.len() - (version.len() + 1)].to_string();
-        for path in read_dir("/var/db/repos/gentoo/".to_string() + &*package).unwrap() {
-            println!("{}", path.unwrap().path().to_string_lossy());
+        let pkgdir = "/var/db/repos/gentoo/".to_string() + &*package;
+        for path in read_dir(pkgdir.clone()).unwrap() {
+            let path_real = path.unwrap().path();
+            if path_real.ends_with("ebuild") {
+                let pathstr = path_real.to_string_lossy();
+                let newversion = &pathstr[pkgdir.len() + 1 + package.split("/").last().unwrap().len()..pathstr.len() - 7];
+                if newversion > &version {
+                    version = newversion.to_string();
+                }
+            }
         }
         installed.push(Atom { modifier: "", package, version, slot: "".to_string() });
     }
