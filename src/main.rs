@@ -129,7 +129,7 @@ fn update() {
                 a = a.clone() + &*read_to_string(path_real.clone()).unwrap();
             } else if path_str.ends_with("/package.use") || path_str.ends_with("/package.use.force") {
                 b = b.clone() + &*read_to_string(path_real.clone()).unwrap();
-            } else if path_str.contains("packages") {
+            } else if path_str.ends_with("packages") {
                 for mut line in read_to_string(path_real.clone()).unwrap().lines() {
                     if !line.starts_with("#") && !line.is_empty() {
                         if line.starts_with("*") {
