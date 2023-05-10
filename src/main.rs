@@ -165,6 +165,7 @@ fn update() {
                         }
                         if !dupe {
                             println!("{}", line_str);
+                            println!("{}", slot);
                             world.push(Atom { modifier, package: line_str, version: version.to_string(), slot: slot.to_string()});
                         }
                     }
