@@ -241,7 +241,9 @@ fn update() {
                 }
             }
         }
-        println!("{}{}{}", package, "-", newversion);
+        if !newversion.is_empty() {
+            println!("{}{}{}", package, "-", newversion);
+        }
         installed.push(Atom { modifier: "", package, version, slot: "".to_string() });
     }
     let mut empty = true;
