@@ -227,7 +227,11 @@ fn update() {
         } else {
             version = crumb.to_string();
         }
-        installed.push(Atom { modifier: "", package: line[..line.len() - (version.len() + 1)].to_string(), version, slot: "".to_string() });
+        let package = line[..line.len() - (version.len() + 1)].to_string();
+        for path in read_dir("/var/db/repos/gentoo/".to_string() + &*package).unwrap() {
+            println!("{}", path.unwrap().path().to_string_lossy());
+        }
+        installed.push(Atom { modifier: "", package, version, slot: "".to_string() });
     }
     println!("packages to be installed:");
     let mut empty = true;
