@@ -231,14 +231,52 @@ fn update() {
         let mut newversion = "".to_string();
         let package = line[..line.len() - (version.len() + 1)].to_string();
         let pkgdir = "/var/db/repos/gentoo/".to_string() + &*package;
+        let pkgoid = package.split("/").last().unwrap();
         for path in read_dir(pkgdir.clone()).unwrap() {
             let path_real = path.unwrap().path();
             if path_real.ends_with("ebuild") {
                 let pathstr = path_real.to_string_lossy();
-                let posversion = &pathstr[pkgdir.len() + 1 + package.split("/").last().unwrap().len()..pathstr.len() - 7];
+                let posversion = &pathstr[pkgdir.len() + 1 + pkgoid.len()..pathstr.len() - 7];
                 if posversion > &version {
                     newversion = posversion.to_string();
                 }
+            }
+        }
+        let mut use_flags_pkg: Vec<String> = vec![];
+        let mut is_rdepend = false;
+        for line in BufReader::new(File::open(pkgdir + "/" + pkgoid + ".ebuild").unwrap()).lines() {
+            let mut unline = line.unwrap().to_string();
+            if unline.starts_with("IUSE") {
+                for split in unline[6..unline.len() - 1].split_whitespace() {
+                    use_flags_pkg.push(split.to_string());
+                }
+            } else if unline.starts_with("RDEPEND") {
+                is_rdepend = true;
+                unline = unline[9..].to_string()
+            } else if unline.ends_with("\"") {
+                is_rdepend = false;
+            }
+            while is_rdepend {
+                if unline.contains("?") {
+                    let mut preline = unline.split("(");
+                    let cond_use_flag = preline.next();
+
+                }
+                if unline.starts_with(">=") {
+                    unline = unline[2..].to_string();
+                }
+                let mut dep_use_flag = "".to_string();
+                if unline.contains("[") {
+                    dep_use_flag = unline.clone().split("[").last().unwrap().to_string();
+                    unline = unline.strip_suffix(("[".to_string() + &*dep_use_flag).as_str()).unwrap().to_string();
+                    dep_use_flag = dep_use_flag.strip_suffix("]").unwrap().to_string();
+                }
+                let mut slot = "";
+                if unline.contains(":") {
+                    slot = unline.split(":").last().unwrap();
+                    unline = unline.strip_suffix((":".to_string() + slot).as_str()).unwrap().to_string();
+                }
+                let depversion = unline.split("-").last().unwrap();
             }
         }
         if !newversion.is_empty() {
