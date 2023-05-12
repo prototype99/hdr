@@ -1153,13 +1153,11 @@ literal "false"
 Design
 \end_layout
 
-\begin_layout Section
-Language
-\end_layout
-
 \begin_layout Standard
 The language that will be used is rust, this is due to the generally favourable
  input/output performance that it exhibits.
+ The software will be made easier to read through the use of recursion and
+ for loops.
 \end_layout
 
 \begin_layout Chapter
@@ -1213,8 +1211,26 @@ livegui-amd64-20230416T164657Z.iso
 Evaluation
 \end_layout
 
+\begin_layout Standard
+Whilst development was progressing at a reasonable pace, the project ran
+ out of time prior to completion.
+ What currently exists of the project could be completed at a later date.
+ The large amount of data that has to be read slowed the project down, because
+ every possible choice must be accounted for.
+\end_layout
+
 \begin_layout Chapter
 Conclusion
+\end_layout
+
+\begin_layout Standard
+Although the project was not completed, conclusions can still be drawn.
+ If Gentoo packages followed a stricter code that allowed for fewer variations,
+ they could be more easily parsed which would have sped up this (and similar)
+ projects.
+ Using rust was a beneficial choice, it would be excellent for future projects.
+ The project was never finished, however it was insightful and could either
+ be finished later or be the basis for a new project.
 \end_layout
 
 \begin_layout Standard
