@@ -257,7 +257,7 @@ fn update() {
             } else if unline.ends_with("\"") {
                 is_rdepend = false;
             }
-            if is_rdepend && !unline.is_empty(){
+            if is_rdepend {
                 if unline.contains("?") {
                     let mut preline = unline.split("(");
                     let cond_use_flag = preline.next();
@@ -270,7 +270,9 @@ fn update() {
                 if unline.contains("[") {
                     dep_use_flag = unline.clone().split("[").last().unwrap().to_string();
                     unline = unline.strip_suffix(("[".to_string() + &*dep_use_flag).as_str()).unwrap().to_string();
-                    dep_use_flag = dep_use_flag.strip_suffix("]").unwrap().to_string();
+                    if !dep_use_flag.is_empty() {
+                        dep_use_flag = dep_use_flag.strip_suffix("]").unwrap().to_string();
+                    }
                 }
                 let mut slot = "";
                 if unline.contains(":") {
