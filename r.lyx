@@ -733,10 +733,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-A graph of the packages in Ubuntu Kylin 14.04 and their dependency relationships
+A graph of packages and their dependency relationships
 \begin_inset CommandInset citation
 LatexCommand citep
-key "wangGraphMethodPackage2015"
+key "vinnichukVisualizedDependencyGraph2020"
 literal "false"
 
 \end_inset
