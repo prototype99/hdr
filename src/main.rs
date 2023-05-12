@@ -244,8 +244,8 @@ fn update() {
         }
         let mut use_flags_pkg: Vec<String> = vec![];
         let mut is_rdepend = false;
-        println!("{}", pkgdir.clone() + "/" + pkgoid + ".ebuild");
-        for line in BufReader::new(File::open(pkgdir + "/" + pkgoid + ".ebuild").unwrap()).lines() {
+        println!("{}", pkgdir.clone() + "/" + pkgoid + "-" + &*version + ".ebuild");
+        for line in BufReader::new(File::open(pkgdir + "/" + pkgoid + "-" + &*version + ".ebuild").unwrap()).lines() {
             let mut unline = line.unwrap().to_string();
             if unline.starts_with("IUSE") {
                 for split in unline[6..unline.len() - 1].split_whitespace() {
