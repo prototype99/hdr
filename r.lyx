@@ -1175,6 +1175,13 @@ Although it was challenging at first to learn, rust has at times simplified
  the programming process due to its large plethora of built-in libraries
  that can effectively work as substitutes for shell commands; this results
  in easier to read, lighter, more performant code overall.
+ By installing the rust plugin on top of Intellij IDEA, a full development
+ environment is easily achieved.
+ At first it was believed that the full dependency list could be obtained
+ through the profile alone, however this did not obtain the full list of
+ packages.
+ As a result, the software had to utilise Gentoo's qlist command.
+ From the installed packages all the other dependencies can easily be acquired.
 \end_layout
 
 \begin_layout Section
@@ -1198,6 +1205,8 @@ livegui-amd64-20230416T164657Z.iso
  It was identified that KVM is the most performant VM solution, boxes being
  a suitable GUI through which to easily setup and view the VM.
  Wget can be used to download the software.
+ This testing process aided in development, as the testing environment could
+ always be ready.
 \end_layout
 
 \begin_layout Chapter
