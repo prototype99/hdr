@@ -257,7 +257,7 @@ fn update() {
             } else if unline.ends_with("\"") {
                 is_rdepend = false;
             }
-            if is_rdepend {
+            if is_rdepend && !unline.is_empty(){
                 if unline.contains("?") {
                     let mut preline = unline.split("(");
                     let cond_use_flag = preline.next();
